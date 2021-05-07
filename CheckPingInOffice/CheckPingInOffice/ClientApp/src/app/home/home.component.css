@@ -1,0 +1,10 @@
+.percents{
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    color:rgb(27, 158, 27);
+    vertical-align: middle;
+    text-align: center;
+    font-size: 500px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
