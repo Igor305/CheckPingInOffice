@@ -2,8 +2,15 @@
 
 /* Provide sufficient contrast against white background */
 
+html{
+  height: 100%;
+  width: 100%;
+}
+
 body{
   background-color: rgb(223, 219, 219);
+  height: 100%;
+  width: 100%;
 }
 
 a {
@@ -18,4 +25,9 @@ code {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+
+@font-face {
+  font-family: digital-7;
+  src: url("./assets/font/digital-7.regular.ttf") format("truetype");
 }

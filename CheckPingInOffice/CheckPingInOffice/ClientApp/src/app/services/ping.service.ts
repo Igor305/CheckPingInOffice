@@ -11,7 +11,7 @@ export class PingService {
 
 
   public async getPing() {
-    const url: string = "https://localhost:44369/Ping"
+    const url: string = "/Ping"
     const ping = await this.http.get<PingModel>(url).toPromise();
 
     return ping;

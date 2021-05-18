@@ -1,10 +1,230 @@
-.percents{
-    position: absolute;
-    top: 10%;
+.container{
+    display:flex;
+    justify-content:center;
+    height: 80%;
+    max-width: 100%;
+}
+
+.block{
+    display:block;
     width: 100%;
-    color:rgb(27, 158, 27);
+    height: 100%;
+}
+
+.nameDay{
+    position: relative;
+    font-size: 30px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.description{
+    position: relative;
+    font-size: 24px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.percents{
+    position: relative;
+    margin-top: 100px;
+    margin-bottom: 125px;
     vertical-align: middle;
     text-align: center;
-    font-size: 500px;
+    font-size: 40px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.percentsLastHour{
+    position: relative;
+    margin-top: 120px;
+    margin-bottom: 125px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 40px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+}
+
+.send{
+    position: relative;
+    vertical-align: middle;
+    text-align: left;
+    font-size: 25px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.sendValue{
+    position: relative;
+    vertical-align: middle;
+    text-align: right;
+    font-size: 25px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.time{
+    position: relative;
+    font-family: 'digital-7', arial;
+    font-size: 25px;
+    text-align: center;
+    width: 100%;
+}
+
+@media (min-width: 450px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 50px;
+    }
+}
+
+@media (min-width: 500px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 60px;
+    }
+}
+
+@media (min-width: 600px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 65px;
+    }
+}
+
+@media (min-width: 700px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 70px;
+    }
+}
+
+@media (min-width: 800px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 75px;
+    }
+}
+
+@media (min-width: 900px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 80px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 85px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 90px;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .percents, .percentsLastHour, .time{
+        font-size: 95px;
+    }
+    .nameDay, .send, .sendValue{
+        font-size: 30px;
+    }
+}
+
+@media (min-width: 1350px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 100px;
+    }
+}
+
+@media (min-width: 1500px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 105px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 110px;
+    }
+}
+
+@media (min-width: 1700px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 115px;
+    }
+}
+
+@media (min-width: 1800px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 120px;
+    }
+}
+
+@media (min-width: 1900px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 125px;
+    }
+}
+
+@media (min-width: 2000px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 130px;
+    }
+}
+
+@media (min-width: 2100px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 135px;
+    }
+}
+
+@media (min-width: 2200px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 140px;
+    }
+}
+
+@media (min-width: 2300px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 145px;
+    }
+}
+
+@media (min-width: 2400px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 150px;
+    }
+}
+
+@media (min-width: 2500px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 155px;
+    }
+}
+
+@media (min-width: 2600px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 160px;
+    }
+}
+
+@media (min-width: 2700px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 165px;
+    }
+}
+
+@media (min-width: 2800px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 170px;
+    }
+}
+
+@media (min-width: 2900px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 175px;
+    }
+}
+
+@media (min-width: 3000px) {
+    .percents, .percentsLastHour, .time{
+        font-size: 180px;
+    }
 }

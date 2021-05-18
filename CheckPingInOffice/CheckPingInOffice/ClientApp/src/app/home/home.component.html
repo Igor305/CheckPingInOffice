@@ -1,1 +1,68 @@
-<div class = "percents">{{ping}}%</div>
+<div class="container">
+
+    <div class="block">
+        <div class ="nameDay">
+            Статистика за прошедшие сутки
+        </div>
+        <div class ="description">
+            (с 8:00 до 8:00)
+        </div>
+        <div class = "percents">
+            <div *ngIf="percentsYesterday == 0" style="color:rgb(27, 158, 27);">Н.Д.</div> 
+            <div *ngIf="(percentsYesterday >= 98 && percentsYesterday != 0)" style="color:rgb(27, 158, 27);">{{percentsYesterday}}%</div> 
+            <div *ngIf="(percentsYesterday < 98 && percentsYesterday != 0)" style="color:hsl(0, 92%, 43%);">{{percentsYesterday}}%</div> 
+        </div>
+        <div class= "send">
+            Всего:{{nAllSendYesterday}}
+        </div>
+        <div class= "send">
+            Потеряно:{{nFalseSendYesterday}}
+        </div>
+        <div class = "send">
+            Процент потери:{{percentsLostYesterday}}%
+        </div>
+    </div>
+    
+    <div class="block">
+        <div class = "nameDay">
+            Статистика за сегодня
+        </div>
+        <div class ="description">
+            (c 8:00 до текущего времени)
+        </div>
+        <div class = "percents">
+            <div *ngIf="percentsForDay >= 98" style="color:rgb(27, 158, 27);">{{percentsForDay}}%</div> 
+            <div *ngIf="percentsForDay < 98" style="color:hsl(0, 92%, 43%);">{{percentsForDay}}%</div> 
+        </div>
+        <div class= "send">
+            Всего:{{nAllSendForDay}}
+        </div>
+        <div class= "send">
+            Потеряно:{{nFalseSendForDay}}
+        </div>
+        <div class = "send">
+            Процент потери:{{percentsLostForDay}}%
+        </div>
+    </div>
+
+    <div class="block">
+        <div class = "nameDay">
+            Статистика за последний час
+        </div>
+        <div class = "percentsLastHour">
+            <div *ngIf="percentsLastHour >= 98" style="color:rgb(27, 158, 27);">{{percentsLastHour}}%</div> 
+            <div *ngIf="percentsLastHour < 98" style="color:hsl(0, 92%, 43%);">{{percentsLastHour}}%</div> 
+        </div>
+        <div class= "send">
+            Всего:{{nAllSendLastHour}}
+        </div>
+        <div class= "send">
+            Потеряно:{{nFalseSendLastHour}}
+        </div>
+        <div class = "send">
+            Процент потери:{{percentsLostLastHour}}%
+        </div>
+    </div>
+
+</div>
+<div class = "time">{{timeNow}}</div>
