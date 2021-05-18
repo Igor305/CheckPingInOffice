@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
     if (now.getSeconds()<10) {sec = "0"+ now.getSeconds();}
     if (now.getSeconds()>=10) {sec = now.getSeconds().toString();}
     
-    this.timeNow = now.getHours() + ":" + min + ":" + sec;
+    this.timeNow = now.getHours() + ":" + min;
   }
 
   public async getPing(){

@@ -1,0 +1,20 @@
+<div class = "font">
+    ipAddress:<span class ="ip">{{ip}}</span>
+    <p>Введите новый ipAddress:</p>
+    <input type="text" id="input" [(ngModel)]="ipNew">
+    <div>
+        <br>
+        <button (click)="setIp()" id = "button">Изменить Ip</button>
+    </div>
+    <div>
+        <br>
+        <nav>
+            <a routerLink="/">
+        <button id = "button">Вернуться</button>
+            </a>
+        </nav>
+        <br>
+        {{result}}
+    </div>
+</div>
+

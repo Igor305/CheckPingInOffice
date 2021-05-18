@@ -8,11 +8,13 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
 import { PingService } from './services/ping.service';
+import { ChangeIpComponent } from './change-ip/change-ip.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    ChangeIpComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -20,6 +22,7 @@ import { PingService } from './services/ping.service';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'ip', component: ChangeIpComponent, pathMatch: 'full'},
     ])
   ],
   providers: [PingService],

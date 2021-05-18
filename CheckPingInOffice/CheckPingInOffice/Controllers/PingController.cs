@@ -24,19 +24,19 @@ namespace CheckPingInOffice.Controllers
         }
 
         [HttpGet("getIp")]
-        public IActionResult getIp()
+        public IpResponseModel getIp()
         {
-            string ip = _checkPingService.getIp();
+            IpResponseModel ipResponseModel = _checkPingService.getIp();
 
-            return Ok($"Активный ipAddress = {ip}");
+            return ipResponseModel;
         }
 
         [HttpGet("setIp")]
-        public IActionResult setIp([FromQuery] string ip)
+        public IpResponseModel setIp([FromQuery] string ip)
         {
-            _checkPingService.setIp(ip);
+            IpResponseModel ipResponseModel =_checkPingService.setIp(ip);
 
-            return Ok($"Установлен новый ipAddress = {ip}");
+            return ipResponseModel;
         }
     }
 }

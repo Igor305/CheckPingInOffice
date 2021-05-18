@@ -96,14 +96,44 @@ namespace BusinessLogicLayer.Services
             return pingResponseModel;
         }
 
-        public string getIp()
+        public IpResponseModel getIp()
         {
-            return ipAddress;
+            IpResponseModel ipResponseModel = new IpResponseModel();
+            ipResponseModel.response = ipAddress;
+            return ipResponseModel;
         }
 
-        public void setIp(string ip)
+        public IpResponseModel setIp(string ip)
         {
+            aTimer.Stop();
+
+            IpResponseModel ipResponseModel = new IpResponseModel();
+
+            System.Threading.Thread.Sleep(5000);
+
             ipAddress = ip;
+
+            nAllSendLastHour = 0;
+            nTrueSendLastHour = 0;
+            nFalseSendLastHour = 0;
+            percentsLastHour = 0;
+            lastHour.Clear();
+
+            nAllSendForDay = 0;
+            nTrueSendForDay = 0;
+            nFalseSendForDay = 0;
+            percentsForDay = 0;
+
+            nAllSendYesterday = 0;
+            nTrueSendYesterday = 0;
+            nFalseSendYesterday = 0;
+            percentsYesterday = 0;
+
+            aTimer.Start();
+
+            ipResponseModel.response = "новый ipAddress удачно установлен";
+
+            return ipResponseModel;
         }
 
         private void getPing(Object source, ElapsedEventArgs e)

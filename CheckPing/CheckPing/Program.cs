@@ -8,7 +8,7 @@ namespace CheckPing
 
         public static void Main(string[] args)
         {
-            string result1 = getPing("a0005-router");
+            string result1 = getPing("8.8.8.8");
             string result2 = getPing("a0005-s");
             string result3 = getPing("188.163.35.276");
             Console.WriteLine(result1+"\n"+ result2 + "\n" + result3);

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0fHHcuFRY4cojgRo89Nj9xnU/7InDnH1dGbyV7W5UF4Q78Ls8F8wBkNTrp708Jtny4xsr9tkjlNtXicI1qjMzw==",
+  "dgSpecHash": "ur7w1j+nPy7ATVC/Mt7tgisd2Yr8XOqUtYS0CN0cU3nUl4L5spzP05y4NwvKjc5FbKH4h4UqAs0FBTLRY4EgwQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\i.talavyria\\Desktop\\CheckPing\\CheckPing\\CheckPing.csproj",
+  "projectFilePath": "C:\\Users\\i.talavyria\\Desktop\\project\\MiniServices\\CheckPing\\CheckPing\\CheckPing.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\i.talavyria\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\i.talavyria\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",

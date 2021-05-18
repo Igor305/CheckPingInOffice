@@ -1,7 +1,7 @@
 .container{
     display:flex;
     justify-content:center;
-    height: 80%;
+    height: 70%;
     max-width: 100%;
 }
 
@@ -64,167 +64,223 @@
 .time{
     position: relative;
     font-family: 'digital-7', arial;
-    font-size: 25px;
+    font-size: 40px;
     text-align: center;
     width: 100%;
 }
 
 @media (min-width: 450px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 50px;
     }
-}
-
-@media (min-width: 500px) {
-    .percents, .percentsLastHour, .time{
-        font-size: 60px;
-    }
-}
-
-@media (min-width: 600px) {
-    .percents, .percentsLastHour, .time{
-        font-size: 65px;
-    }
-}
-
-@media (min-width: 700px) {
-    .percents, .percentsLastHour, .time{
+    .time{
         font-size: 70px;
     }
 }
 
-@media (min-width: 800px) {
-    .percents, .percentsLastHour, .time{
-        font-size: 75px;
+@media (min-width: 500px) {
+    .percents, .percentsLastHour{
+        font-size: 60px;
     }
-}
-
-@media (min-width: 900px) {
-    .percents, .percentsLastHour, .time{
+    .time{
         font-size: 80px;
     }
 }
 
+@media (min-width: 600px) {
+    .percents, .percentsLastHour{
+        font-size: 65px;
+    }
+    .time{
+        font-size: 90px;
+    }
+}
+
+@media (min-width: 700px) {
+    .percents, .percentsLastHour{
+        font-size: 70px;
+    }
+    .time{
+        font-size: 100px;
+    }
+}
+
+@media (min-width: 800px) {
+    .percents, .percentsLastHour{
+        font-size: 75px;
+    }
+    .time{
+        font-size: 100px;
+    }
+}
+
+@media (min-width: 900px) {
+    .percents, .percentsLastHour{
+        font-size: 80px;
+    }
+
+    .time{
+        font-size: 110px;
+    }
+}
+
 @media (min-width: 1000px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 85px;
+    }
+
+    .time{
+        font-size: 120px;
     }
 }
 
 @media (min-width: 1100px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 90px;
+    }
+ 
+    .time{
+        font-size: 130px;
     }
 }
 
 @media (min-width: 1200px) {
 
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 95px;
     }
     .nameDay, .send, .sendValue{
         font-size: 30px;
     }
+
+    .time{
+        font-size: 140px;
+    }
 }
 
 @media (min-width: 1350px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 100px;
+    }
+
+    .time{
+        font-size: 150px;
     }
 }
 
 @media (min-width: 1500px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 105px;
+    }
+        
+    .time{
+        font-size: 150px;
     }
 }
 
 @media (min-width: 1600px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 110px;
+    }   
+
+    .time{
+        font-size: 150px;
     }
 }
 
 @media (min-width: 1700px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 115px;
+    }      
+
+    .time{
+        font-size: 150px;
     }
 }
 
 @media (min-width: 1800px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 120px;
+    }
+
+    .time{
+        font-size: 150px;
     }
 }
 
 @media (min-width: 1900px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 125px;
+    }
+
+    .time{
+        font-size: 150px;
     }
 }
 
 @media (min-width: 2000px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 130px;
     }
+
 }
 
 @media (min-width: 2100px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 135px;
     }
 }
 
 @media (min-width: 2200px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 140px;
     }
 }
 
 @media (min-width: 2300px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 145px;
     }
 }
 
 @media (min-width: 2400px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 150px;
     }
 }
 
 @media (min-width: 2500px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 155px;
     }
 }
 
 @media (min-width: 2600px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 160px;
     }
 }
 
 @media (min-width: 2700px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 165px;
     }
 }
 
 @media (min-width: 2800px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 170px;
     }
 }
 
 @media (min-width: 2900px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 175px;
     }
 }
 
 @media (min-width: 3000px) {
-    .percents, .percentsLastHour, .time{
+    .percents, .percentsLastHour{
         font-size: 180px;
     }
 }
