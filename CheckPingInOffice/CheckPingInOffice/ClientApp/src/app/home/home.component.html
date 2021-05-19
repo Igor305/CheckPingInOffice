@@ -1,3 +1,15 @@
+<mat-form-field appearance="fill">
+  <mat-label>Выберете IP</mat-label>
+  <mat-select [(ngModel)]="actualIp">
+    <mat-option *ngFor="let ip of ipMass" [value]="ip">
+      {{ip}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+<div class = "time">{{timeNow}}</div>
+
 <div class="container">
 
     <div class="block">
@@ -63,6 +75,4 @@
             Процент потери:{{percentsLostLastHour}}%
         </div>
     </div>
-
 </div>
-<div class = "time">{{timeNow}}</div>

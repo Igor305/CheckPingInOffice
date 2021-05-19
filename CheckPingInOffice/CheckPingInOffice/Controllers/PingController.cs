@@ -16,25 +16,41 @@ namespace CheckPingInOffice.Controllers
         }
 
         [HttpGet]
-        public PingResponseModel Ping()
+        public PingResponseModel Ping(string ip)
         {
-            PingResponseModel pingResponseModel = _checkPingService.getPercent();
+            PingResponseModel pingResponseModel = _checkPingService.getPercent(ip);
 
             return pingResponseModel;
         }
 
         [HttpGet("getIp")]
-        public IpResponseModel getIp()
+        public IpAddressResponseModel getIp()
         {
-            IpResponseModel ipResponseModel = _checkPingService.getIp();
+            IpAddressResponseModel ipAddressResponseModel = _checkPingService.getIp();
+
+            return ipAddressResponseModel;
+        }
+
+        [HttpGet("addIp")]
+        public IpResponseModel addIp(string ip)
+        {
+            IpResponseModel ipResponseModel = _checkPingService.addIp(ip);
 
             return ipResponseModel;
         }
 
-        [HttpGet("setIp")]
-        public IpResponseModel setIp([FromQuery] string ip)
+        [HttpGet("updateIp")]
+        public IpResponseModel updateIp([FromQuery] string ip,[FromQuery] string ipNew)
         {
-            IpResponseModel ipResponseModel =_checkPingService.setIp(ip);
+            IpResponseModel ipResponseModel =_checkPingService.updateIp(ip, ipNew);
+
+            return ipResponseModel;
+        }
+
+        [HttpGet("deleteIp")]
+        public IpResponseModel deleteIp([FromQuery] string ip)
+        {
+            IpResponseModel ipResponseModel = _checkPingService.deleteIp(ip);
 
             return ipResponseModel;
         }

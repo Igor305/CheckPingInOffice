@@ -4,8 +4,10 @@ namespace BusinessLogicLayer.Services.Interfaces
 {
     public interface ICheckPingService
     {
-        public PingResponseModel getPercent();
-        public IpResponseModel getIp();
-        public IpResponseModel setIp(string ip);
+        public PingResponseModel getPercent(string ip);
+        public IpAddressResponseModel getIp();
+        public IpResponseModel addIp(string ip);
+        public IpResponseModel updateIp(string ip, string ipNew);
+        public IpResponseModel deleteIp(string ip);
     }
 }

@@ -11,6 +11,9 @@ import { interval } from 'rxjs'
 
 export class HomeComponent implements OnInit {
 
+  ipMass: string[];
+  actualIp:string;
+
   percentsLastHour: number;
   nAllSendLastHour: number;
   nTrueSendLastHour: number;
@@ -36,11 +39,18 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit(){
 
+    let ip = await this.pingService.getIp();
+    this.ipMass = ip.ipAddress;
+    this.actualIp = this.ipMass[0];
+    console.log(this.actualIp);
+
     setInterval(() => this.getTime(), 1000);
 
     const source = interval(1000);
     const subscribe = source.subscribe(val => this.getPing());
+
   }
+
 
   public async getTime() {
 
@@ -56,7 +66,9 @@ export class HomeComponent implements OnInit {
   }
 
   public async getPing(){
-    let ping = await this.pingService.getPing();
+
+   // this.actualIp = "10.15.8.1"
+    let ping = await this.pingService.getPing(this.actualIp);
 
     this.percentsLastHour = ping.percentsLastHour;
     this.nAllSendLastHour = ping.nAllSendLastHour;

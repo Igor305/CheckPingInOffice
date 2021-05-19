@@ -31,3 +31,5 @@ code {
   font-family: digital-7;
   src: url("./assets/font/digital-7.regular.ttf") format("truetype");
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

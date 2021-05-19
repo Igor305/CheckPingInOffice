@@ -1,4 +1,5 @@
-﻿using BusinessLogicLayer.Models.Response;
+﻿using BusinessLogicLayer.Models;
+using BusinessLogicLayer.Models.Response;
 using BusinessLogicLayer.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,176 +11,278 @@ namespace BusinessLogicLayer.Services
     public class CheckPingService : ICheckPingService
     {
         private static bool isStart;
-        private static Timer aTimer;
 
-        private static string ipAddress = "10.15.8.1";
+        private static List<AllVariablesModel> allVariablesModels = new List<AllVariablesModel>();
 
-        private static double nAllSendLastHour = 0;
-        private static double nTrueSendLastHour = 0;
-        private static double nFalseSendLastHour = 0;
-        private static double percentsLastHour = 0;
-        private static List<bool> lastHour = new List<bool>();
-
-        private static double nAllSendForDay = 0;
-        private static double nTrueSendForDay = 0;
-        private static double nFalseSendForDay = 0;
-        private static double percentsForDay = 0; 
-
-        private static double nAllSendYesterday = 0;
-        private static double nTrueSendYesterday = 0;
-        private static double nFalseSendYesterday = 0;
-        private static double percentsYesterday = 0;
-
-        public PingResponseModel getPercent()
+        public PingResponseModel getPercent(string ip)
         {
             PingResponseModel pingResponseModel = new PingResponseModel();
+
+            AllVariablesModel connect = allVariablesModels.Find(x => x.ipAddress == ip);
+
+            if (connect != null)
+            {
+
+                if (DateTime.Now.Hour == 8 && DateTime.Now.Minute == 0 && DateTime.Now.Second >= 0 && DateTime.Now.Second <= 1)
+                {
+
+                    if (connect.nAllSendForDay != 0)
+                    {
+                        connect.percentsYesterday = connect.nTrueSendForDay * 100 / connect.nAllSendForDay;
+                        connect.percentsYesterday = Math.Round(connect.percentsYesterday, 2);
+
+                        connect.nAllSendYesterday = connect.nAllSendForDay;
+                        connect.nTrueSendYesterday = connect.nTrueSendForDay;
+                        connect.nFalseSendYesterday = connect.nFalseSendForDay;
+                    }
+
+                }
+
+                if (DateTime.Now.Hour == 8 && DateTime.Now.Minute == 0 && DateTime.Now.Second >= 2 && DateTime.Now.Second <= 3)
+                {
+                    connect.nAllSendForDay = 0;
+                    connect.nTrueSendForDay = 0;
+                    connect.nFalseSendForDay = 0;
+                }
+
+                if (connect.nAllSendForDay != 0)
+                {
+                    connect.percentsForDay = connect.nTrueSendForDay * 100 / connect.nAllSendForDay;
+                    connect.percentsForDay = Math.Round(connect.percentsForDay, 2);
+                }
+
+                if (connect.nAllSendLastHour != 0)
+                {
+                    connect.percentsLastHour = connect.nTrueSendLastHour * 100 / connect.nAllSendLastHour;
+                    connect.percentsLastHour = Math.Round(connect.percentsLastHour, 2);
+                }
+
+
+                pingResponseModel.nAllSendLastHour = connect.nAllSendLastHour;
+                pingResponseModel.nTrueSendLastHour = connect.nTrueSendLastHour;
+                pingResponseModel.nFalseSendLastHour = connect.nFalseSendLastHour;
+                pingResponseModel.percentsLastHour = connect.percentsLastHour;
+
+                pingResponseModel.nAllSendForDay = connect.nAllSendForDay;
+                pingResponseModel.nFalseSendForDay = connect.nFalseSendForDay;
+                pingResponseModel.nTrueSendForDay = connect.nTrueSendForDay;
+                pingResponseModel.percentsForDay = connect.percentsForDay;
+
+                pingResponseModel.nAllSendYesterday = connect.nAllSendYesterday;
+                pingResponseModel.nFalseSendYesterday = connect.nFalseSendYesterday;
+                pingResponseModel.nTrueSendYesterday = connect.nTrueSendYesterday;
+                pingResponseModel.percentsYesterday = connect.percentsYesterday;
+            }
+
+            return pingResponseModel;
+        }
+
+        public IpAddressResponseModel getIp()
+        {
+            IpAddressResponseModel  ipAddressResponseModels = new IpAddressResponseModel();
 
             if (!isStart)
             {
                 isStart = true;
 
-                aTimer = new Timer(1000);
-                aTimer.Elapsed += getPing;
-                aTimer.AutoReset = true;
-                aTimer.Start();
-            }
-
-            if (DateTime.Now.Hour == 8 && DateTime.Now.Minute == 0 && DateTime.Now.Second >= 0 && DateTime.Now.Second <= 1)
-            {
-
-                if (nAllSendForDay != 0)
+                allVariablesModels.Add(new AllVariablesModel
                 {
-                    percentsYesterday = nTrueSendForDay * 100 / nAllSendForDay;
-                    percentsYesterday = Math.Round(percentsYesterday, 2);
+                    ipAddress = "10.15.8.1",
 
-                    nAllSendYesterday = nAllSendForDay;
-                    nTrueSendYesterday = nTrueSendForDay;
-                    nFalseSendYesterday = nFalseSendForDay;
-                }
+                    nAllSendLastHour = 0,
+                    nTrueSendLastHour = 0,
+                    nFalseSendLastHour = 0,
+                    percentsLastHour = 0,
 
+                    nAllSendForDay = 0,
+                    nTrueSendForDay = 0,
+                    nFalseSendForDay = 0,
+                    percentsForDay = 0,
+
+                    nAllSendYesterday = 0,
+                    nTrueSendYesterday = 0,
+                    nFalseSendYesterday = 0,
+                    percentsYesterday = 0,
+
+                    timer = new Timer(1000)
+                });
+
+                AllVariablesModel allVariablesModel = allVariablesModels.Find(x => x.ipAddress == "10.15.8.1");
+
+                allVariablesModel.timer.Elapsed += (o, e) => getPing("10.15.8.1");
+                allVariablesModel.timer.AutoReset = true;
+                allVariablesModel.timer.Start();
             }
 
-            if (DateTime.Now.Hour == 8 && DateTime.Now.Minute == 0 && DateTime.Now.Second >= 2 && DateTime.Now.Second <= 3)
+            foreach (AllVariablesModel ipAddress in allVariablesModels)
             {
-                nAllSendForDay = 0;
-                nTrueSendForDay = 0;
-                nFalseSendForDay = 0;
+                ipAddressResponseModels.ipAddress.Add(ipAddress.ipAddress);
             }
 
-            if (nAllSendForDay != 0)
-            {
-                percentsForDay = nTrueSendForDay * 100 / nAllSendForDay;
-                percentsForDay = Math.Round(percentsForDay, 2);
-            }
-
-            if (nAllSendLastHour != 0)
-            {
-                percentsLastHour = nTrueSendLastHour * 100 / nAllSendLastHour;
-                percentsLastHour = Math.Round(percentsLastHour, 2);
-            }
-
-            pingResponseModel.nAllSendLastHour = nAllSendLastHour;
-            pingResponseModel.nTrueSendLastHour = nTrueSendLastHour;
-            pingResponseModel.nFalseSendLastHour = nFalseSendLastHour;
-            pingResponseModel.percentsLastHour = percentsLastHour;
-
-            pingResponseModel.nAllSendForDay = nAllSendForDay;
-            pingResponseModel.nFalseSendForDay = nFalseSendForDay;
-            pingResponseModel.nTrueSendForDay = nTrueSendForDay;
-            pingResponseModel.percentsForDay = percentsForDay;
-
-            pingResponseModel.nAllSendYesterday = nAllSendYesterday;
-            pingResponseModel.nFalseSendYesterday = nFalseSendYesterday;
-            pingResponseModel.nTrueSendYesterday = nTrueSendYesterday;
-            pingResponseModel.percentsYesterday = percentsYesterday;
-
-            return pingResponseModel;
+            return ipAddressResponseModels;
         }
 
-        public IpResponseModel getIp()
+        public IpResponseModel addIp(string ip)
         {
             IpResponseModel ipResponseModel = new IpResponseModel();
-            ipResponseModel.response = ipAddress;
+
+            if (ip != null)
+            {         
+
+                AllVariablesModel isIp = allVariablesModels.Find(x => x.ipAddress == ip);
+
+                if (isIp == null)
+                {
+                    allVariablesModels.Add(new AllVariablesModel
+                    {
+                        ipAddress = ip,
+
+                        nAllSendLastHour = 0,
+                        nTrueSendLastHour = 0,
+                        nFalseSendLastHour = 0,
+                        percentsLastHour = 0,
+
+                        nAllSendForDay = 0,
+                        nTrueSendForDay = 0,
+                        nFalseSendForDay = 0,
+                        percentsForDay = 0,
+
+                        nAllSendYesterday = 0,
+                        nTrueSendYesterday = 0,
+                        nFalseSendYesterday = 0,
+                        percentsYesterday = 0,
+
+                        timer = new Timer(1000)
+                    });
+
+                    AllVariablesModel allVariablesModel = allVariablesModels.Find(x => x.ipAddress == ip);
+
+                    allVariablesModel.timer.Elapsed += (o, e) => getPing(ip);
+                    allVariablesModel.timer.AutoReset = true;
+                    allVariablesModel.timer.Start();
+
+                    ipResponseModel.response = $"IP: {ip} успешно добавлен!";
+                }
+
+                if (isIp != null)
+                {
+                    ipResponseModel.response = $"IP: {ip} уже существует!";
+                }
+            }
+            else
+            {
+                ipResponseModel.response = $"Вы забыли ввести ipAddress!";
+            }
+
             return ipResponseModel;
         }
 
-        public IpResponseModel setIp(string ip)
+        public IpResponseModel updateIp(string ip, string ipNew)
         {
-            aTimer.Stop();
-
             IpResponseModel ipResponseModel = new IpResponseModel();
+
+            AllVariablesModel connect = allVariablesModels.Find(x => x.ipAddress == ip);
+
+            connect.timer.Stop();
 
             System.Threading.Thread.Sleep(5000);
 
-            ipAddress = ip;
+            connect.ipAddress = ipNew;
 
-            nAllSendLastHour = 0;
-            nTrueSendLastHour = 0;
-            nFalseSendLastHour = 0;
-            percentsLastHour = 0;
-            lastHour.Clear();
+            connect.nAllSendLastHour = 0;
+            connect.nTrueSendLastHour = 0;
+            connect.nFalseSendLastHour = 0;
+            connect.percentsLastHour = 0;
+            connect.lastHour.Clear();
 
-            nAllSendForDay = 0;
-            nTrueSendForDay = 0;
-            nFalseSendForDay = 0;
-            percentsForDay = 0;
+            connect.nAllSendForDay = 0;
+            connect.nTrueSendForDay = 0;
+            connect.nFalseSendForDay = 0;
+            connect.percentsForDay = 0;
 
-            nAllSendYesterday = 0;
-            nTrueSendYesterday = 0;
-            nFalseSendYesterday = 0;
-            percentsYesterday = 0;
+            connect.nAllSendYesterday = 0;
+            connect.nTrueSendYesterday = 0;
+            connect.nFalseSendYesterday = 0;
+            connect.percentsYesterday = 0;
 
-            aTimer.Start();
+            connect.timer.Start();
 
-            ipResponseModel.response = "новый ipAddress удачно установлен";
+            ipResponseModel.response = $"новый ipAddress: {ipNew} удачно установлен";
 
             return ipResponseModel;
         }
 
-        private void getPing(Object source, ElapsedEventArgs e)
+        public IpResponseModel deleteIp(string ip)
+        {
+            IpResponseModel ipResponseModel = new IpResponseModel();
+
+            AllVariablesModel connect = allVariablesModels.Find(x => x.ipAddress == ip);
+
+            if (connect == null)
+            {
+                ipResponseModel.response = $"Ip: {ip} не был найден!";
+            }
+
+            if (connect != null)
+            {
+                connect.timer.Stop();
+
+                System.Threading.Thread.Sleep(2000);
+
+                allVariablesModels.Remove(connect);
+
+                ipResponseModel.response = $"Ip: {ip} был успешно удалён!";
+            }
+            
+            return ipResponseModel;
+        }
+
+        private void getPing(string ip)
         {
             try
             {
+                AllVariablesModel connect = allVariablesModels.Find(x => x.ipAddress == ip);
+
                 Ping ping = new Ping();
 
-                PingReply reply = ping.Send(ipAddress);
+                PingReply reply = ping.Send(connect.ipAddress);
 
                 bool pingable = reply.Status == IPStatus.Success;
 
-                if (lastHour.Count >= 3600)
+                if (connect.lastHour.Count >= 3600)
                 {
-                    if (lastHour[0])
+                    if (connect.lastHour[0])
                     {
-                        nTrueSendLastHour--;
+                        connect.nTrueSendLastHour--;
                     }
 
-                    if (!lastHour[0])
+                    if (!connect.lastHour[0])
                     {
-                        nFalseSendLastHour--;
+                        connect.nFalseSendLastHour--;
                     }
 
-                    lastHour.RemoveAt(0);
+                    connect.lastHour.RemoveAt(0);
                 }
 
                 if (pingable)
                 {
-                    lastHour.Add(true);
+                    connect.lastHour.Add(true);
 
-                    nTrueSendLastHour++;
-                    nTrueSendForDay++;
+                    connect.nTrueSendLastHour++;
+                    connect.nTrueSendForDay++;
                 }
 
                 if (!pingable)
                 {
-                    lastHour.Add(false);
+                    connect.lastHour.Add(false);
 
-                    nFalseSendLastHour++;
-                    nFalseSendForDay++;
+                    connect.nFalseSendLastHour++;
+                    connect.nFalseSendForDay++;
                 }
 
-                nAllSendLastHour = lastHour.Count;
+                connect.nAllSendLastHour = connect.lastHour.Count;
 
-                nAllSendForDay++;
+                connect.nAllSendForDay++;
             }
 
             catch

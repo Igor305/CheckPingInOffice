@@ -1,20 +1,63 @@
-<div class = "font">
-    ipAddress:<span class ="ip">{{ip}}</span>
-    <p>Введите новый ipAddress:</p>
-    <input type="text" id="input" [(ngModel)]="ipNew">
+<div>
+    <mat-tab-group>
+
+        <mat-tab label="Изменить">
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Выберете IP</mat-label>
+                    <mat-select [(ngModel)]="actualIp">
+                        <mat-option *ngFor="let ip of ipMass" [value]="ip">
+                        {{ip}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                ipAddress:<span class ="ip">{{ipMass}}</span>
+                <div> Введите новый ipAddress:
+                <input type="text" id="input" [(ngModel)]="ipNew">
+                <div>
+                    <br>
+                    <button (click)="updateIp()" id = "button">Изменить Ip</button>
+                </div>
+                </div>
+            </div> 
+        </mat-tab>
+
+        <mat-tab label="Добавить"> 
+            <div>Введите новый ipAddress:
+                <input type="text" id="input" [(ngModel)]="ipNew">
+                <div>
+                    <br>
+                    <button (click)="addIp()" id = "button">Добавить Ip</button>
+                </div>
+            </div>
+        </mat-tab>
+
+        <mat-tab label="Удалить"> 
+            <mat-form-field appearance="fill">
+                <mat-label>Выберете IP</mat-label>
+                <mat-select [(ngModel)]="actualIp">
+                    <mat-option *ngFor="let ip of ipMass" [value]="ip">
+                    {{ip}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            ipAddress:<span class ="ip">{{ipMass}}</span> 
+            <div>
+                <button (click)="deleteIp()" id = "button">Удалить Ip</button>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
     <div>
-        <br>
-        <button (click)="setIp()" id = "button">Изменить Ip</button>
-    </div>
-    <div>
-        <br>
-        <nav>
-            <a routerLink="/">
-        <button id = "button">Вернуться</button>
-            </a>
-        </nav>
-        <br>
-        {{result}}
+        <div>
+            <br>
+            <nav>
+                <a routerLink="/">
+            <button id = "button">Вернуться</button>
+                </a>
+            </nav>
+            <br>
+            {{result}}
+        </div>
     </div>
 </div>
 
