@@ -1,63 +1,74 @@
-<div>
-    <mat-tab-group>
+<div class = "flex"> 
 
-        <mat-tab label="Изменить">
-            <div>
+    <div>
+        <mat-tab-group>
+            <mat-tab label="Изменить">
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Выберете адрес</mat-label>
+                        <mat-select [(ngModel)]="address" >
+                            <mat-option *ngFor="let address of Mass" [value]="address">
+                            {{address.nameConnect}} - {{address.ipAddress}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div> Введите новый ip:
+                    <div><input type="text" id="input" [(ngModel)]="ipNew"></div>
+                    <div>
+                        <br>
+                        <button mat-raised-button (click)="updateIp()" class = "button">Изменить</button>
+                    </div>
+                    </div>
+                </div> 
+            </mat-tab>
+
+            <mat-tab label="Добавить"> 
+                <div> Введите новое имя адреса: </div>
+                <div><input type="text" id="input" [(ngModel)]="nameNew"></div>
+                <div>Введите новый ip:
+                    <div><input type="text" id="input" [(ngModel)]="ipNew"></div>
+                    <div>
+                        <br>
+                        <button mat-raised-button (click)="addIp()" class = "button">Добавить</button>
+                    </div>
+                </div>
+            </mat-tab>
+
+            <mat-tab label="Удалить"> 
                 <mat-form-field appearance="fill">
-                    <mat-label>Выберете IP</mat-label>
-                    <mat-select [(ngModel)]="actualIp">
-                        <mat-option *ngFor="let ip of ipMass" [value]="ip">
-                        {{ip}}
+                    <mat-label>Выберете адрес</mat-label>
+                    <mat-select [(ngModel)]="address" >
+                        <mat-option *ngFor="let address of Mass" [value]="address">
+                        {{address.nameConnect}} - {{address.ipAddress}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-                ipAddress:<span class ="ip">{{ipMass}}</span>
-                <div> Введите новый ipAddress:
-                <input type="text" id="input" [(ngModel)]="ipNew">
                 <div>
-                    <br>
-                    <button (click)="updateIp()" id = "button">Изменить Ip</button>
+                    <button mat-raised-button (click)="deleteIp()" class = "button">Удалить</button>
                 </div>
-                </div>
-            </div> 
-        </mat-tab>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
 
-        <mat-tab label="Добавить"> 
-            <div>Введите новый ipAddress:
-                <input type="text" id="input" [(ngModel)]="ipNew">
-                <div>
-                    <br>
-                    <button (click)="addIp()" id = "button">Добавить Ip</button>
-                </div>
-            </div>
-        </mat-tab>
-
-        <mat-tab label="Удалить"> 
-            <mat-form-field appearance="fill">
-                <mat-label>Выберете IP</mat-label>
-                <mat-select [(ngModel)]="actualIp">
-                    <mat-option *ngFor="let ip of ipMass" [value]="ip">
-                    {{ip}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-            ipAddress:<span class ="ip">{{ipMass}}</span> 
-            <div>
-                <button (click)="deleteIp()" id = "button">Удалить Ip</button>
-            </div>
-        </mat-tab>
-    </mat-tab-group>
-    <div>
-        <div>
-            <br>
-            <nav>
-                <a routerLink="/">
-            <button id = "button">Вернуться</button>
-                </a>
-            </nav>
-            <br>
-            {{result}}
+    <div class = "list">
+        <div class= "listName"> 
+            Список доступных ip-адресов:
         </div>
+        <mat-list class="ip" *ngFor="let address of Mass">
+            <mat-list-item >{{address.nameConnect}} - {{address.ipAddress}}</mat-list-item>
+            <mat-divider></mat-divider>
+        </mat-list>
     </div>
 </div>
-
+<div class="font">
+    <div>
+        <br>
+        {{result}}
+        <br>
+        <nav>
+            <a routerLink="/">
+        <button mat-raised-button class = "buttonBack">Вернуться</button>
+            </a>
+        </nav>
+    </div>
+</div>

@@ -5,6 +5,7 @@ namespace BusinessLogicLayer.Models
 {
     public class AllVariablesModel
     {
+        public string nameConnect { get; set; }
         public string ipAddress { get; set; }
 
         public double nAllSendLastHour { get; set; }

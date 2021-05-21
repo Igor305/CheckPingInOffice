@@ -14,36 +14,43 @@ namespace BusinessLogicLayer.Services
 
         private static List<AllVariablesModel> allVariablesModels = new List<AllVariablesModel>();
 
-        public PingResponseModel getPercent(string ip)
+        public PingResponseModel getPercent(string name, string ip)
         {
             PingResponseModel pingResponseModel = new PingResponseModel();
+
+
+            if (DateTime.Now.Hour == 8 && DateTime.Now.Minute == 0 && DateTime.Now.Second >= 0 && DateTime.Now.Second <= 2)
+            {
+                foreach (AllVariablesModel allVariablesModel in allVariablesModels)
+                {
+                    if (allVariablesModel.nAllSendForDay != 0)
+                    {
+                        allVariablesModel.percentsYesterday = allVariablesModel.nTrueSendForDay * 100 / allVariablesModel.nAllSendForDay;
+                        allVariablesModel.percentsYesterday = Math.Round(allVariablesModel.percentsYesterday, 2);
+
+                        allVariablesModel.nAllSendYesterday = allVariablesModel.nAllSendForDay;
+                        allVariablesModel.nTrueSendYesterday = allVariablesModel.nTrueSendForDay;
+                        allVariablesModel.nFalseSendYesterday = allVariablesModel.nFalseSendForDay;
+                    }
+                }
+            }
+
+            if (DateTime.Now.Hour == 8 && DateTime.Now.Minute == 0 && DateTime.Now.Second >= 4 && DateTime.Now.Second <= 6)
+            {
+                foreach (AllVariablesModel allVariablesModel in allVariablesModels)
+                {
+                    allVariablesModel.nAllSendForDay = 0;
+                    allVariablesModel.nTrueSendForDay = 0;
+                    allVariablesModel.nFalseSendForDay = 0;
+                }
+            }
 
             AllVariablesModel connect = allVariablesModels.Find(x => x.ipAddress == ip);
 
             if (connect != null)
             {
 
-                if (DateTime.Now.Hour == 8 && DateTime.Now.Minute == 0 && DateTime.Now.Second >= 0 && DateTime.Now.Second <= 1)
-                {
-
-                    if (connect.nAllSendForDay != 0)
-                    {
-                        connect.percentsYesterday = connect.nTrueSendForDay * 100 / connect.nAllSendForDay;
-                        connect.percentsYesterday = Math.Round(connect.percentsYesterday, 2);
-
-                        connect.nAllSendYesterday = connect.nAllSendForDay;
-                        connect.nTrueSendYesterday = connect.nTrueSendForDay;
-                        connect.nFalseSendYesterday = connect.nFalseSendForDay;
-                    }
-
-                }
-
-                if (DateTime.Now.Hour == 8 && DateTime.Now.Minute == 0 && DateTime.Now.Second >= 2 && DateTime.Now.Second <= 3)
-                {
-                    connect.nAllSendForDay = 0;
-                    connect.nTrueSendForDay = 0;
-                    connect.nFalseSendForDay = 0;
-                }
+               
 
                 if (connect.nAllSendForDay != 0)
                 {
@@ -87,6 +94,7 @@ namespace BusinessLogicLayer.Services
 
                 allVariablesModels.Add(new AllVariablesModel
                 {
+                    nameConnect = "Office",
                     ipAddress = "10.15.8.1",
 
                     nAllSendLastHour = 0,
@@ -116,62 +124,67 @@ namespace BusinessLogicLayer.Services
 
             foreach (AllVariablesModel ipAddress in allVariablesModels)
             {
-                ipAddressResponseModels.ipAddress.Add(ipAddress.ipAddress);
+                ipAddressResponseModels.ipAddress.Add( new IpAddressModel { nameConnect = ipAddress.nameConnect, ipAddress = ipAddress.ipAddress });
             }
 
             return ipAddressResponseModels;
         }
 
-        public IpResponseModel addIp(string ip)
+        public IpResponseModel addIp(string name, string ip)
         {
             IpResponseModel ipResponseModel = new IpResponseModel();
 
-            if (ip != null)
-            {         
-
-                AllVariablesModel isIp = allVariablesModels.Find(x => x.ipAddress == ip);
-
-                if (isIp == null)
-                {
-                    allVariablesModels.Add(new AllVariablesModel
-                    {
-                        ipAddress = ip,
-
-                        nAllSendLastHour = 0,
-                        nTrueSendLastHour = 0,
-                        nFalseSendLastHour = 0,
-                        percentsLastHour = 0,
-
-                        nAllSendForDay = 0,
-                        nTrueSendForDay = 0,
-                        nFalseSendForDay = 0,
-                        percentsForDay = 0,
-
-                        nAllSendYesterday = 0,
-                        nTrueSendYesterday = 0,
-                        nFalseSendYesterday = 0,
-                        percentsYesterday = 0,
-
-                        timer = new Timer(1000)
-                    });
-
-                    AllVariablesModel allVariablesModel = allVariablesModels.Find(x => x.ipAddress == ip);
-
-                    allVariablesModel.timer.Elapsed += (o, e) => getPing(ip);
-                    allVariablesModel.timer.AutoReset = true;
-                    allVariablesModel.timer.Start();
-
-                    ipResponseModel.response = $"IP: {ip} успешно добавлен!";
-                }
-
-                if (isIp != null)
-                {
-                    ipResponseModel.response = $"IP: {ip} уже существует!";
-                }
-            }
-            else
+            if (name == null)
             {
-                ipResponseModel.response = $"Вы забыли ввести ipAddress!";
+                ipResponseModel.response = $"Вы забыли ввести имя адреса!";
+                return ipResponseModel;
+            }
+
+            if (ip == null)
+            {
+                ipResponseModel.response = $"Вы забыли ввести ip!";
+                return ipResponseModel;
+            }
+
+            AllVariablesModel isIp = allVariablesModels.Find(x => x.ipAddress == ip);
+
+            if (isIp == null)
+            {
+                allVariablesModels.Add(new AllVariablesModel
+                {
+                    nameConnect = name,
+                    ipAddress = ip,
+
+                    nAllSendLastHour = 0,
+                    nTrueSendLastHour = 0,
+                    nFalseSendLastHour = 0,
+                    percentsLastHour = 0,
+
+                    nAllSendForDay = 0,
+                    nTrueSendForDay = 0,
+                    nFalseSendForDay = 0,
+                    percentsForDay = 0,
+
+                    nAllSendYesterday = 0,
+                    nTrueSendYesterday = 0,
+                    nFalseSendYesterday = 0,
+                    percentsYesterday = 0,
+
+                    timer = new Timer(1000)
+                });
+
+                AllVariablesModel allVariablesModel = allVariablesModels.Find(x => x.ipAddress == ip);
+
+                allVariablesModel.timer.Elapsed += (o, e) => getPing(ip);
+                allVariablesModel.timer.AutoReset = true;
+                allVariablesModel.timer.Start();
+
+                ipResponseModel.response = $"Ip-адрес: {name} - {ip} успешно добавлен!";
+            }
+
+            if (isIp != null)
+            {
+                ipResponseModel.response = $"Ip:{ip} уже существует!";
             }
 
             return ipResponseModel;
@@ -181,11 +194,40 @@ namespace BusinessLogicLayer.Services
         {
             IpResponseModel ipResponseModel = new IpResponseModel();
 
+            AllVariablesModel connectcopy = allVariablesModels.Find(x => x.ipAddress == ipNew);
+
+            if (connectcopy != null)
+            {
+                ipResponseModel.response = $"Данный IP:{ipNew} уже пингуется!";
+
+                return ipResponseModel;
+            }
+
+            if (ipNew == null)
+            {
+                ipResponseModel.response = $"Введите новый IP!";
+
+                return ipResponseModel;
+            }
+
+            if (ip == ipNew)
+            {
+                ipResponseModel.response = $"Cтарый и новый IP совпадают:{ip}, измените IP!";
+                
+                return ipResponseModel;
+            }
+
             AllVariablesModel connect = allVariablesModels.Find(x => x.ipAddress == ip);
 
-            connect.timer.Stop();
+            if (connect == null)
+            {
+                ipResponseModel.response = $"Выберете IP!";
 
-            System.Threading.Thread.Sleep(5000);
+                return ipResponseModel;
+            }
+
+            connect.timer.Stop();
+            connect.timer.Dispose();
 
             connect.ipAddress = ipNew;
 
@@ -205,14 +247,18 @@ namespace BusinessLogicLayer.Services
             connect.nFalseSendYesterday = 0;
             connect.percentsYesterday = 0;
 
+            connect.timer = new Timer(1000);
+            connect.timer.Elapsed += (o, e) => getPing(ipNew);
+            connect.timer.AutoReset = true;
             connect.timer.Start();
 
-            ipResponseModel.response = $"новый ipAddress: {ipNew} удачно установлен";
+            ipResponseModel.response = $"новый ipAddress: {ipNew} удачно установлен!";
+
 
             return ipResponseModel;
         }
 
-        public IpResponseModel deleteIp(string ip)
+        public IpResponseModel deleteIp(string name, string ip)
         {
             IpResponseModel ipResponseModel = new IpResponseModel();
 
@@ -227,11 +273,9 @@ namespace BusinessLogicLayer.Services
             {
                 connect.timer.Stop();
 
-                System.Threading.Thread.Sleep(2000);
-
                 allVariablesModels.Remove(connect);
 
-                ipResponseModel.response = $"Ip: {ip} был успешно удалён!";
+                ipResponseModel.response = $"Ip-адрес:{name} - {ip} был успешно удалён!";
             }
             
             return ipResponseModel;

@@ -16,9 +16,9 @@ namespace CheckPingInOffice.Controllers
         }
 
         [HttpGet]
-        public PingResponseModel Ping(string ip)
+        public PingResponseModel Ping([FromQuery] string name, [FromQuery] string ip)
         {
-            PingResponseModel pingResponseModel = _checkPingService.getPercent(ip);
+            PingResponseModel pingResponseModel = _checkPingService.getPercent(name, ip);
 
             return pingResponseModel;
         }
@@ -32,9 +32,9 @@ namespace CheckPingInOffice.Controllers
         }
 
         [HttpGet("addIp")]
-        public IpResponseModel addIp(string ip)
+        public IpResponseModel addIp([FromQuery] string name, [FromQuery] string ip)
         {
-            IpResponseModel ipResponseModel = _checkPingService.addIp(ip);
+            IpResponseModel ipResponseModel = _checkPingService.addIp(name, ip);
 
             return ipResponseModel;
         }
@@ -48,9 +48,9 @@ namespace CheckPingInOffice.Controllers
         }
 
         [HttpGet("deleteIp")]
-        public IpResponseModel deleteIp([FromQuery] string ip)
+        public IpResponseModel deleteIp([FromQuery] string name, [FromQuery] string ip)
         {
-            IpResponseModel ipResponseModel = _checkPingService.deleteIp(ip);
+            IpResponseModel ipResponseModel = _checkPingService.deleteIp(name, ip);
 
             return ipResponseModel;
         }

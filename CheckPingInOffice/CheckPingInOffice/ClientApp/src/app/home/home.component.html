@@ -1,78 +1,119 @@
-<mat-form-field appearance="fill">
-  <mat-label>Выберете IP</mat-label>
-  <mat-select [(ngModel)]="actualIp">
-    <mat-option *ngFor="let ip of ipMass" [value]="ip">
-      {{ip}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+<div class="mini-container">
+    <div>
+        <mat-form-field appearance="fill" class = "variable">
+        <mat-label>Выберете IP</mat-label>
+        <mat-select [(ngModel)]="address">
+            <mat-option *ngFor="let ip of Mass" [value]="ip">
+            {{ip.nameConnect}} - {{ip.ipAddress}}
+            </mat-option>
+        </mat-select>
+        </mat-form-field>
+    </div>
 
-
-<div class = "time">{{timeNow}}</div>
-
+    <div class ="info">
+        Доступность интернета
+    </div>
+    <div class = "time-container">
+        <div class= "time">{{hours}}</div>
+        <div class= "point">{{secondPoint}}</div>
+        <div class= "time">{{minutes}}</div>
+    </div>
+</div>
 <div class="container">
 
     <div class="block">
-        <div class ="nameDay">
-            Статистика за прошедшие сутки
-        </div>
-        <div class ="description">
-            (с 8:00 до 8:00)
-        </div>
-        <div class = "percents">
-            <div *ngIf="percentsYesterday == 0" style="color:rgb(27, 158, 27);">Н.Д.</div> 
-            <div *ngIf="(percentsYesterday >= 98 && percentsYesterday != 0)" style="color:rgb(27, 158, 27);">{{percentsYesterday}}%</div> 
-            <div *ngIf="(percentsYesterday < 98 && percentsYesterday != 0)" style="color:hsl(0, 92%, 43%);">{{percentsYesterday}}%</div> 
-        </div>
-        <div class= "send">
-            Всего:{{nAllSendYesterday}}
-        </div>
-        <div class= "send">
-            Потеряно:{{nFalseSendYesterday}}
-        </div>
-        <div class = "send">
-            Процент потери:{{percentsLostYesterday}}%
-        </div>
-    </div>
-    
-    <div class="block">
-        <div class = "nameDay">
-            Статистика за сегодня
-        </div>
-        <div class ="description">
-            (c 8:00 до текущего времени)
-        </div>
-        <div class = "percents">
-            <div *ngIf="percentsForDay >= 98" style="color:rgb(27, 158, 27);">{{percentsForDay}}%</div> 
-            <div *ngIf="percentsForDay < 98" style="color:hsl(0, 92%, 43%);">{{percentsForDay}}%</div> 
-        </div>
-        <div class= "send">
-            Всего:{{nAllSendForDay}}
-        </div>
-        <div class= "send">
-            Потеряно:{{nFalseSendForDay}}
-        </div>
-        <div class = "send">
-            Процент потери:{{percentsLostForDay}}%
+        <div class="blockLastHour">
+            <br>
+            <div class = "nameDay">
+                Последний час
+            </div>
+            <div class="svgLastHour">
+                <svg width="75%" height="75%" viewBox="0 0 42 42" class="donut">
+                    <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff"></circle>
+                    <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#d2d3d4" stroke-width="3"></circle>
+                    <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#CF0C0C" stroke-width="3" stroke-dasharray="100 0"></circle>
+                    <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#14DE10" stroke-width="3" style.stroke-dasharray="{{percentsLastHour}},{{percentsLostLastHour}}" stroke-dashoffset="25"></circle>
+                    <g class="chart-text">
+                        <text x="50%" y="50%" class="chart-number">{{percentsLastHour}}%</text>
+                    </g>
+                </svg>
+            </div>
+            <div class = "blockSend">
+                <div class= "sendLeft">
+                    Количество проверок:{{nAllSendLastHour}}
+                </div>
+                <div class= "sendLeft">
+                    Количество потерь:{{nFalseSendLastHour}}
+                </div>
+                <div class = "sendLeft">
+                    Процент потери:{{percentsLostLastHour}}%
+                </div>  
+            </div>
         </div>
     </div>
 
     <div class="block">
-        <div class = "nameDay">
-            Статистика за последний час
+        <div class="blockForDay">
+            <br>
+            <div class = "nameDay">
+                Текущие сутки
+            </div>
+            <div class = "container">
+                <div class="svg">
+                    <svg width="100%" height="100%" viewBox="0 0 42 42" class="donut">
+                        <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff"></circle>
+                        <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#d2d3d4" stroke-width="3"></circle>
+                        <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#CF0C0C" stroke-width="3" stroke-dasharray="100 0"></circle>
+                        <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#14DE10" stroke-width="3" style.stroke-dasharray="{{percentsForDay}},{{percentsLostForDay}}"stroke-dashoffset="25"></circle>
+                        <g class="chart-text">
+                            <text x="50%" y="50%" class="chart-number">{{percentsForDay}}%</text>
+                        </g>
+                    </svg>
+                </div>
+                <div>
+                    <div class= "sendLeft" >
+                        <br><br>Количество проверок:{{nAllSendForDay}}
+                    </div>
+                    <div class= "sendLeft">
+                        <br>Количество потерь:{{nFalseSendForDay}}
+                    </div>
+                    <div class= "sendLeft">
+                        <br>Процент потери:{{percentsLostForDay}}%
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class = "percentsLastHour">
-            <div *ngIf="percentsLastHour >= 98" style="color:rgb(27, 158, 27);">{{percentsLastHour}}%</div> 
-            <div *ngIf="percentsLastHour < 98" style="color:hsl(0, 92%, 43%);">{{percentsLastHour}}%</div> 
+    <div class="blockYesterday">
+        <br>
+        <div class ="nameDay">
+            Прошедшие сутки
         </div>
-        <div class= "send">
-            Всего:{{nAllSendLastHour}}
-        </div>
-        <div class= "send">
-            Потеряно:{{nFalseSendLastHour}}
-        </div>
-        <div class = "send">
-            Процент потери:{{percentsLostLastHour}}%
+            <div class = "container">
+                <div class="svg">
+                    <svg width="100%" height="100%" viewBox="0 0 42 42" class="donut">
+                        <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff"></circle>
+                        <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#d2d3d4" stroke-width="3"></circle>
+                        <circle *ngIf="percentsYesterday != 0" class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#CF0C0C" stroke-width="3" stroke-dasharray="100 0"></circle>
+                        <circle *ngIf="percentsYesterday != 0" class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#14DE10" stroke-width="3" style.stroke-dasharray="{{percentsYesterday}},{{percentsLostYesterday}}"stroke-dashoffset="25"></circle>
+                        
+                        <g class="chart-text">
+                            <text *ngIf="percentsYesterday == 0" x="50%" y="50%" class="chart-number">Н.Д.</text> 
+                            <text *ngIf="percentsYesterday != 0" x="50%" y="50%" class="chart-number">{{percentsYesterday}}%</text>
+                        </g>
+                    </svg>
+                </div>
+                <div>
+                    <div class= "sendLeft">
+                        <br><br>Количество проверок:{{nAllSendYesterday}}
+                    </div>
+                    <div class= "sendLeft">
+                        <br>Количество потерь:{{nFalseSendYesterday}}
+                    </div>
+                    <div class = "sendLeft">
+                        <br>Процент потери:{{percentsLostYesterday}}%
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

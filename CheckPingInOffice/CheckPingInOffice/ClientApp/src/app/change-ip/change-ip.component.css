@@ -1,10 +1,41 @@
+.flex{
+    display: flex;
+}
+
 .font{
     position: relative;
     width: 100%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 55px;
+    font-size: 35px;
     text-align: center;
 }
+
+.listName{
+    text-align: center;
+}
+
+.list{
+    position: relative;
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 35px;
+    text-align: left;
+    background-color: #d4d1d1;
+}
+
 .ip{
     color: rgb(31, 148, 31);
+}
+
+.button{
+    font-size: 20px;
+}
+
+.buttonBack{
+    font-size: 25px;
+}
+
+mat-tab-group{
+    font-size: 20px;
+    width: 100%;
 }

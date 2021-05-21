@@ -1,3 +1,4 @@
 export interface IpAllModel{
-    ipAddress?: string[];
+    nameConnect?: string;
+    ipAddress?: string;
 }
