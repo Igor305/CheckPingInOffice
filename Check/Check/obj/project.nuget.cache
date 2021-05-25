@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yUUa32ILcQla3Z9NXpFJNvR0srlAGkThp/w99fwTFDRFi2MrToPWEKsXzgBAtCMuEGpOQYSAradxKIEg408eEw==",
+  "dgSpecHash": "b+DWsuyXbGSzbC3Mqx1RmBPm6rJCE0qv1xTg6jGyqQM8F7EGFbgn8nFc8SIm1yGYxE7WD/OumKacTPCL38lsog==",
   "success": true,
-  "projectFilePath": "C:\\Users\\i.talavyria\\Desktop\\Новая папка\\Check\\Check\\Check.csproj",
+  "projectFilePath": "C:\\Users\\i.talavyria\\Desktop\\project\\MiniServices\\Check\\Check\\Check.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\i.talavyria\\.nuget\\packages\\epplus\\5.6.2\\epplus.5.6.2.nupkg.sha512",
     "C:\\Users\\i.talavyria\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.10\\microsoft.extensions.configuration.3.1.10.nupkg.sha512",

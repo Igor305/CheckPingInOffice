@@ -4409,11 +4409,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\i.talavyria\\Desktop\\Новая папка\\Check\\Check\\Check.csproj",
+      "projectUniqueName": "C:\\Users\\i.talavyria\\Desktop\\project\\MiniServices\\Check\\Check\\Check.csproj",
       "projectName": "Check",
-      "projectPath": "C:\\Users\\i.talavyria\\Desktop\\Новая папка\\Check\\Check\\Check.csproj",
+      "projectPath": "C:\\Users\\i.talavyria\\Desktop\\project\\MiniServices\\Check\\Check\\Check.csproj",
       "packagesPath": "C:\\Users\\i.talavyria\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\i.talavyria\\Desktop\\Новая папка\\Check\\Check\\obj\\",
+      "outputPath": "C:\\Users\\i.talavyria\\Desktop\\project\\MiniServices\\Check\\Check\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\i.talavyria\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4462,7 +4462,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

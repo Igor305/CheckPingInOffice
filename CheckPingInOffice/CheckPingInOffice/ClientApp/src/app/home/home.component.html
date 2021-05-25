@@ -1,7 +1,7 @@
 <div class="mini-container">
     <div>
         <mat-form-field appearance="fill" class = "variable">
-        <mat-label>Выберете IP</mat-label>
+        <mat-label>Сhoose IP</mat-label>
         <mat-select [(ngModel)]="address">
             <mat-option *ngFor="let ip of Mass" [value]="ip">
             {{ip.nameConnect}} - {{ip.ipAddress}}
@@ -11,7 +11,7 @@
     </div>
 
     <div class ="info">
-        Доступность интернета
+        Connection Availability
     </div>
     <div class = "time-container">
         <div class= "time">{{hours}}</div>
@@ -25,7 +25,7 @@
         <div class="blockLastHour">
             <br>
             <div class = "nameDay">
-                Последний час
+                Last Hour
             </div>
             <div class="svgLastHour">
                 <svg width="75%" height="75%" viewBox="0 0 42 42" class="donut">
@@ -40,13 +40,13 @@
             </div>
             <div class = "blockSend">
                 <div class= "sendLeft">
-                    Количество проверок:{{nAllSendLastHour}}
+                    Checks:{{nAllSendLastHour}}
                 </div>
                 <div class= "sendLeft">
-                    Количество потерь:{{nFalseSendLastHour}}
+                    Losses:{{nFalseSendLastHour}}
                 </div>
                 <div class = "sendLeft">
-                    Процент потери:{{percentsLostLastHour}}%
+                    Losses(%):{{percentsLostLastHour}}%
                 </div>  
             </div>
         </div>
@@ -56,7 +56,7 @@
         <div class="blockForDay">
             <br>
             <div class = "nameDay">
-                Текущие сутки
+                Today
             </div>
             <div class = "container">
                 <div class="svg">
@@ -72,13 +72,13 @@
                 </div>
                 <div>
                     <div class= "sendLeft" >
-                        <br><br>Количество проверок:{{nAllSendForDay}}
+                        <br><br>Checks:{{nAllSendForDay}}
                     </div>
                     <div class= "sendLeft">
-                        <br>Количество потерь:{{nFalseSendForDay}}
+                        <br>Losses:{{nFalseSendForDay}}
                     </div>
                     <div class= "sendLeft">
-                        <br>Процент потери:{{percentsLostForDay}}%
+                        <br>Losses(%):{{percentsLostForDay}}%
                     </div>
                 </div>
             </div>
@@ -86,7 +86,7 @@
     <div class="blockYesterday">
         <br>
         <div class ="nameDay">
-            Прошедшие сутки
+            Yesterday
         </div>
             <div class = "container">
                 <div class="svg">
@@ -104,13 +104,13 @@
                 </div>
                 <div>
                     <div class= "sendLeft">
-                        <br><br>Количество проверок:{{nAllSendYesterday}}
+                        <br><br>Checks:{{nAllSendYesterday}}
                     </div>
                     <div class= "sendLeft">
-                        <br>Количество потерь:{{nFalseSendYesterday}}
+                        <br>Losses:{{nFalseSendYesterday}}
                     </div>
                     <div class = "sendLeft">
-                        <br>Процент потери:{{percentsLostYesterday}}%
+                        <br>Losses(%):{{percentsLostYesterday}}%
                     </div>
                 </div>
             </div>

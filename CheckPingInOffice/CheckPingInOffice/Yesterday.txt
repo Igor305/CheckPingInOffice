@@ -1,0 +1,12 @@
+****************************
+ipAddress:10.15.8.1
+nAllSendYesterday:81015
+nFalseSendYesterday:694
+nTrueSendYesterday:80321
+percentsYesterday:99,14
+****************************
+ipAddress:10.12.251.1
+nAllSendYesterday:86036
+nFalseSendYesterday:709
+nTrueSendYesterday:85327
+percentsYesterday:99,18
