@@ -15,8 +15,7 @@ export class HomeComponent implements OnInit {
   address: IpAllModel;
   Mass: IpAllModel[];
 
-  name:string;
-  actualIp:string;
+  name: string;
 
   percentsLastHour: number;
   nAllSendLastHour: number;
@@ -47,10 +46,11 @@ export class HomeComponent implements OnInit {
 
     let ip = await this.pingService.getIp();
     this.Mass = ip.ipAddress;
-    this.name = this.Mass[0].nameConnect;
-    this.actualIp = this.Mass[0].ipAddress;
 
-    console.log(this.name);
+    this.address = this.Mass[0];
+    this.name = this.address.nameConnect;
+    this.address.ipAddress = this.Mass[0].ipAddress;
+
     setInterval(() => this.getTime(), 1000);
 
     const source = interval(1000);

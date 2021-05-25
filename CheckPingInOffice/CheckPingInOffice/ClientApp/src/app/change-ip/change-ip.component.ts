@@ -26,8 +26,8 @@ export class ChangeIpComponent implements OnInit {
 
     let ip = await this.pingService.getIp();
     this.Mass = ip.ipAddress;
+    this.address = this.Mass[0];
     this.name = this.Mass[0].nameConnect + " - " + this.Mass[0].ipAddress;
-    console.log(this.name);
 
   }
 
