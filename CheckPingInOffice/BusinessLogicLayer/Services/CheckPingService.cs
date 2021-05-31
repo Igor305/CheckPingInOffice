@@ -14,7 +14,7 @@ namespace BusinessLogicLayer.Services
     {
         private static bool isStart;
         private static bool isRead;
-        private static readonly string path = "Yesterday.txt";
+        private static readonly string path = "YesterdayIp.txt";
 
         private static List<AllVariablesModel> allVariablesModels = new List<AllVariablesModel>();
 
@@ -72,39 +72,8 @@ namespace BusinessLogicLayer.Services
 
             try
             {
-                if (!isStart)
-                {
-                    isStart = true;
 
-                    allVariablesModels.Add(new AllVariablesModel
-                    {
-                        nameConnect = "Office",
-                        ipAddress = "10.15.8.1",
-
-                        nAllSendLastHour = 0,
-                        nTrueSendLastHour = 0,
-                        nFalseSendLastHour = 0,
-                        percentsLastHour = 0,
-
-                        nAllSendForDay = 0,
-                        nTrueSendForDay = 0,
-                        nFalseSendForDay = 0,
-                        percentsForDay = 0,
-
-                        nAllSendYesterday = 0,
-                        nTrueSendYesterday = 0,
-                        nFalseSendYesterday = 0,
-                        percentsYesterday = 0,
-
-                        timer = new Timer(1000)
-                    });
-
-                    AllVariablesModel allVariablesModel = allVariablesModels.Find(x => x.ipAddress == "10.15.8.1");
-
-                    allVariablesModel.timer.Elapsed += (o, e) => getPing("10.15.8.1");
-                    allVariablesModel.timer.AutoReset = true;
-                    allVariablesModel.timer.Start();
-                }
+                start();
 
                 foreach (AllVariablesModel ipAddress in allVariablesModels)
                 {
@@ -129,6 +98,43 @@ namespace BusinessLogicLayer.Services
             }
 
             return ipAddressResponseModels;
+        }
+
+        private void start()
+        {
+            if (!isStart)
+            {
+                isStart = true;
+
+                allVariablesModels.Add(new AllVariablesModel
+                {
+                    nameConnect = "Office",
+                    ipAddress = "10.15.8.1",
+
+                    nAllSendLastHour = 0,
+                    nTrueSendLastHour = 0,
+                    nFalseSendLastHour = 0,
+                    percentsLastHour = 0,
+
+                    nAllSendForDay = 0,
+                    nTrueSendForDay = 0,
+                    nFalseSendForDay = 0,
+                    percentsForDay = 0,
+
+                    nAllSendYesterday = 0,
+                    nTrueSendYesterday = 0,
+                    nFalseSendYesterday = 0,
+                    percentsYesterday = 0,
+
+                    timer = new Timer(1000)
+                });
+
+                AllVariablesModel allVariablesModel = allVariablesModels.Find(x => x.ipAddress == "10.15.8.1");
+
+                allVariablesModel.timer.Elapsed += (o, e) => getPing("10.15.8.1");
+                allVariablesModel.timer.AutoReset = true;
+                allVariablesModel.timer.Start();
+            }
         }
 
         private void readInFile()
@@ -209,45 +215,45 @@ namespace BusinessLogicLayer.Services
 
             AllVariablesModel isIp = allVariablesModels.Find(x => x.ipAddress == ip);
 
-            if (isIp == null)
-            {
-                allVariablesModels.Add(new AllVariablesModel
-                {
-                    nameConnect = name,
-                    ipAddress = ip,
-
-                    nAllSendLastHour = 0,
-                    nTrueSendLastHour = 0,
-                    nFalseSendLastHour = 0,
-                    percentsLastHour = 0,
-
-                    nAllSendForDay = 0,
-                    nTrueSendForDay = 0,
-                    nFalseSendForDay = 0,
-                    percentsForDay = 0,
-
-                    nAllSendYesterday = 0,
-                    nTrueSendYesterday = 0,
-                    nFalseSendYesterday = 0,
-                    percentsYesterday = 0,
-
-                    timer = new Timer(1000)
-                });
-
-                AllVariablesModel allVariablesModel = allVariablesModels.Find(x => x.ipAddress == ip);
-
-                allVariablesModel.timer.Elapsed += (o, e) => getPing(ip);
-                allVariablesModel.timer.AutoReset = true;
-                allVariablesModel.timer.Start();
-
-                ipResponseModel.response = $"Ip-адрес: {name} - {ip} успешно добавлен!";
-            }
 
             if (isIp != null)
             {
                 ipResponseModel.response = $"Ip:{ip} уже существует!";
+
+                return ipResponseModel;
             }
 
+            allVariablesModels.Add(new AllVariablesModel
+            {
+                nameConnect = name,
+                ipAddress = ip,
+
+                nAllSendLastHour = 0,
+                nTrueSendLastHour = 0,
+                nFalseSendLastHour = 0,
+                percentsLastHour = 0,
+
+                nAllSendForDay = 0,
+                nTrueSendForDay = 0,
+                nFalseSendForDay = 0,
+                percentsForDay = 0,
+
+                nAllSendYesterday = 0,
+                nTrueSendYesterday = 0,
+                nFalseSendYesterday = 0,
+                percentsYesterday = 0,
+
+                timer = new Timer(1000)
+            });
+
+            AllVariablesModel allVariablesModel = allVariablesModels.Find(x => x.ipAddress == ip);
+
+            allVariablesModel.timer.Elapsed += (o, e) => getPing(ip);
+            allVariablesModel.timer.AutoReset = true;
+            allVariablesModel.timer.Start();
+
+            ipResponseModel.response = $"Ip-адрес: {name} - {ip} успешно добавлен!";
+            
             return ipResponseModel;
         }
 
@@ -328,16 +334,15 @@ namespace BusinessLogicLayer.Services
             if (connect == null)
             {
                 ipResponseModel.response = $"Ip: {ip} не был найден!";
+
+                return ipResponseModel;
             }
 
-            if (connect != null)
-            {
-                connect.timer.Stop();
+            connect.timer.Stop();
 
-                allVariablesModels.Remove(connect);
+            allVariablesModels.Remove(connect);
 
-                ipResponseModel.response = $"Ip-адрес:{name} - {ip} был успешно удалён!";
-            }
+            ipResponseModel.response = $"Ip-адрес:{name} - {ip} был успешно удалён!";
             
             return ipResponseModel;
         }

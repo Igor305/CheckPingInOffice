@@ -1,3 +1,4 @@
+<div class = "headerIp">Ip-адреса</div>
 <div class = "flex"> 
 
     <div>
@@ -7,7 +8,7 @@
                     <mat-form-field appearance="fill">
                         <mat-label>Выберете адрес</mat-label>
                         <mat-select [(ngModel)]="address" >
-                            <mat-option *ngFor="let address of Mass" [value]="address">
+                            <mat-option *ngFor="let address of MassIp" [value]="address">
                             {{address.nameConnect}} - {{address.ipAddress}}
                             </mat-option>
                         </mat-select>
@@ -24,7 +25,7 @@
 
             <mat-tab label="Добавить"> 
                 <div> Введите новое имя адреса: </div>
-                <div><input type="text" id="input" [(ngModel)]="nameNew"></div>
+                <div><input type="text" id="input" [(ngModel)]="nameNewIp"></div>
                 <div>Введите новый ip:
                     <div><input type="text" id="input" [(ngModel)]="ipNew"></div>
                     <div>
@@ -38,7 +39,7 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Выберете адрес</mat-label>
                     <mat-select [(ngModel)]="address" >
-                        <mat-option *ngFor="let address of Mass" [value]="address">
+                        <mat-option *ngFor="let address of MassIp" [value]="address">
                         {{address.nameConnect}} - {{address.ipAddress}}
                         </mat-option>
                     </mat-select>
@@ -54,8 +55,72 @@
         <div class= "listName"> 
             Список доступных ip-адресов:
         </div>
-        <mat-list class="ip" *ngFor="let address of Mass">
+        <mat-list class="ip" *ngFor="let address of MassIp">
             <mat-list-item >{{address.nameConnect}} - {{address.ipAddress}}</mat-list-item>
+            <mat-divider></mat-divider>
+        </mat-list>
+    </div>
+</div>
+
+<div class = "headerApi">Веб-сервисы</div>
+<div class = "flex"> 
+
+    <div>
+        <mat-tab-group>
+            <mat-tab label="Изменить">
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Выберете веб-сервис</mat-label>
+                        <mat-select [(ngModel)]="api" >
+                            <mat-option *ngFor="let api of MassApi" [value]="api">
+                            {{api.name}} - {{api.path}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div> Введите новый путь:
+                    <div><input type="text" id="input" [(ngModel)]="pathNew"></div>
+                    <div>
+                        <br>
+                        <button mat-raised-button (click)="updateApi()" class = "button">Изменить</button>
+                    </div>
+                    </div>
+                </div> 
+            </mat-tab>
+
+            <mat-tab label="Добавить"> 
+                <div> Введите новое имя: </div>
+                <div><input type="text" id="input" [(ngModel)]="nameNewApi"></div>
+                <div>Введите новый путь:
+                    <div><input type="text" id="input" [(ngModel)]="pathNew"></div>
+                    <div>
+                        <br>
+                        <button mat-raised-button (click)="addApi()" class = "button">Добавить</button>
+                    </div>
+                </div>
+            </mat-tab>
+
+            <mat-tab label="Удалить"> 
+                <mat-form-field appearance="fill">
+                    <mat-label>Выберете веб-сервис</mat-label>
+                    <mat-select [(ngModel)]="api" >
+                        <mat-option *ngFor="let api of MassApi" [value]="api">
+                        {{api.name}} - {{api.path}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button (click)="deleteApi()" class = "button">Удалить</button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+
+    <div class = "list">
+        <div class= "listName"> 
+            Список доступных веб-сервисов:
+        </div>
+        <mat-list class="ip" *ngFor="let api of MassApi">
+            <mat-list-item >{{api.name}}:<br> {{api.path}}</mat-list-item>
             <mat-divider></mat-divider>
         </mat-list>
     </div>

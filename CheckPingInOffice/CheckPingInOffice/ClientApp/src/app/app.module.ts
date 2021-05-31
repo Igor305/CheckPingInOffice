@@ -10,21 +10,26 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 
+import { HomeModule } from './home/home.module';
+import { ChangeIpModule } from './change-ip/change-ip.module';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-
-import { PingService } from './services/ping.service';
 import { ChangeIpComponent } from './change-ip/change-ip.component';
 
+import { PingService } from './services/ping.service';
+import { StatusApiComponent } from './status-api/status-api.component';
+import { StatusApiModule } from './status-api/status-api.module';
+
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    ChangeIpComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    HomeModule,
+    ChangeIpModule,
+    StatusApiModule,
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
@@ -35,6 +40,7 @@ import { ChangeIpComponent } from './change-ip/change-ip.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'ip', component: ChangeIpComponent, pathMatch: 'full'},
+      { path: 'status-api', component: StatusApiComponent, pathMatch: 'full'}
     ]),
     BrowserAnimationsModule
   ],

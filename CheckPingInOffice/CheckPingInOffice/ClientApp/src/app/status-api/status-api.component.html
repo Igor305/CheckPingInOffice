@@ -1,34 +1,13 @@
 <div class="mini-container">
     <div>
-        <mat-form-field appearance="fill" class = "chooseType">
-            <mat-label>Сhoose type</mat-label>
-            <mat-select [(ngModel)]="type">
-                <mat-option *ngFor="let t of types" [value]="t">
-                    {{t}}
-                </mat-option>
-            </mat-select>
+        <mat-form-field appearance="fill" class = "variable">
+        <mat-label>Сhoose IP</mat-label>
+        <mat-select [(ngModel)]="api">
+            <mat-option *ngFor="let api of Mass" [value]="api">
+            {{api.name}} - {{api.path}}
+            </mat-option>
+        </mat-select>
         </mat-form-field>
-        
-        <span *ngIf="type == 'Ip address'">
-            <mat-form-field appearance="fill" class = "variable">
-                <mat-label>Сhoose IP</mat-label>
-                <mat-select [(ngModel)]="address">
-                    <mat-option *ngFor="let ip of massAddress" [value]="ip">
-                        {{ip.nameConnect}} - {{ip.ipAddress}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </span>
-        <span *ngIf="type == 'Web service'">
-            <mat-form-field appearance="fill" class = "variable">
-                <mat-label>Сhoose Api</mat-label>
-                <mat-select [(ngModel)]="api">
-                    <mat-option *ngFor="let api of massApi" [value]="api">
-                        {{api.name}} - {{api.path}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </span>
     </div>
 
     <div class ="info">

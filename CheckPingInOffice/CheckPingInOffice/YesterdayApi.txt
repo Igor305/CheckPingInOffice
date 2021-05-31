@@ -1,0 +1,12 @@
+****************************
+path:https://www.google.com
+nAllSendYesterday:2
+nFalseSendYesterday:0
+nTrueSendYesterday:2
+percentsYesterday:100
+****************************
+path:https://gmsapi.avrora.lan/api/getExcByDocid?api-key=ncbXCefCXParYFM3uwtpX3hYFx5WIdiaINz5B&Docid=1234441
+nAllSendYesterday:2
+nFalseSendYesterday:0
+nTrueSendYesterday:2
+percentsYesterday:100

@@ -2,12 +2,10 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 75px;
 }
-
 .svgLastHour{
     position: relative;
     margin-left: 20%;
 }
-
 .svg{
     position: relative;
     margin-right: 15%;
@@ -28,7 +26,6 @@
     justify-content:center;
     max-width: 100%;
 }
-
 .container{
     display:flex;
     justify-content:center;
@@ -36,22 +33,9 @@
     max-width: 100%;
 }
 
-.chooseType{
-    font-size: 20px;
-    width: 180px;
-}
-
 .variable{
     font-size: 20px;
     width: 300px;
-}
-
-mat-radio-button{
-    position: relative;
-    margin-left: 20px;
-    display:block;
-    font-family :Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 20px;
 }
 
 .block{
@@ -66,13 +50,11 @@ mat-radio-button{
     height: 100%;
     background-color: #fff;
 }
-
 .blockForDay{
     position: relative;
     height: 50%;
     background-color: #fff;
 }
-
 .blockYesterday{
     position: relative;
     margin-top: 1%;

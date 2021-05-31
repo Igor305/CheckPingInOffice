@@ -22,7 +22,8 @@ namespace CheckPingInOffice
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ICheckPingService,CheckPingService>();
-            services.AddControllersWithViews();
+            services.AddScoped<ICheckApiService, CheckApiService>();
+            services.AddControllers();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
