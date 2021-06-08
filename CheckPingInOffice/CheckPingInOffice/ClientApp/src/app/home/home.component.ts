@@ -53,34 +53,8 @@ export class HomeComponent implements OnInit {
 
     this.type = "Ip address";
 
-    let ip = await this.pingService.getIp();
-
-    if (ip.ipAddress.length != 0){
-
-    this.massAddress = ip.ipAddress;
-    this.address = this.massAddress[0];
-    this.nameIp = this.address.nameConnect;
-    this.address.ipAddress = this.massAddress[0].ipAddress;
-
-    }
- 
-    let api = await this.apiService.getApi();
-
-    if (api.apiModels.length != 0){
-
-    this.massApi = api.apiModels;
-    this.api = this.massApi[0];
-    this.nameApi = this.api.name;
-    this.api.path = this.massApi[0].path;
-    console.log(this.address);
-    
-    }
-
     setInterval(() => this.getTime(), 1000);
-
-    const source = interval(1000);
-    const subscribe = source.subscribe(val => this.getPing());
-
+    setInterval(() => this.getPing(), 1000);
   }
 
   public async getTime() {
@@ -109,6 +83,8 @@ export class HomeComponent implements OnInit {
   }
 
   public async getPing(){
+
+    this.isWork();
 
     if (this.type == "Ip address")
     {
@@ -169,6 +145,31 @@ export class HomeComponent implements OnInit {
       let percentsLostYesterday = 100 - ping.percentsYesterday;
   
       this.percentsLostYesterday = percentsLostYesterday.toFixed(2);
+    }
+  }
+  
+  public async isWork(){
+
+    let ip = await this.pingService.getIp();
+
+    if (ip.ipAddress.length != 0){
+
+    this.massAddress = ip.ipAddress;
+    this.address = this.massAddress[0];
+    this.nameIp = this.address.nameConnect;
+    this.address.ipAddress = this.massAddress[0].ipAddress;
+
+    }
+ 
+    let api = await this.apiService.getApi();
+
+    if (api.apiModels.length != 0){
+
+    this.massApi = api.apiModels;
+    this.api = this.massApi[0];
+    this.nameApi = this.api.name;
+    this.api.path = this.massApi[0].path;
+    
     }
   }
 }

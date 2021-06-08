@@ -129,7 +129,7 @@ namespace BusinessLogicLayer.Services
                     nFalseSendYesterday = 0,
                     percentsYesterday = 0,
 
-                    timer = new Timer(60000)
+                    timer = new Timer(1000)
                 });
 
 
@@ -249,7 +249,7 @@ namespace BusinessLogicLayer.Services
                 nFalseSendYesterday = 0,
                 percentsYesterday = 0,
 
-                timer = new Timer(60000)
+                timer = new Timer(1000)
             });
 
             allVariablesApiModel = allVariablesApiModels.Find(x => x.path == path);
@@ -320,7 +320,7 @@ namespace BusinessLogicLayer.Services
             allVariablesApiModel.nFalseSendYesterday = 0;
             allVariablesApiModel.percentsYesterday = 0;
 
-            allVariablesApiModel.timer = new Timer(60000);
+            allVariablesApiModel.timer = new Timer(1000);
             allVariablesApiModel.timer.Elapsed += async (o, e) => await getStatusApi(pathNew);
             allVariablesApiModel.timer.AutoReset = true;
             allVariablesApiModel.timer.Start();
