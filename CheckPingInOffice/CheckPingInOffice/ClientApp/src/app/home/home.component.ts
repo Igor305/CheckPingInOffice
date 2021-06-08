@@ -53,6 +53,27 @@ export class HomeComponent implements OnInit {
 
     this.type = "Ip address";
 
+    let ip = await this.pingService.getIp();
+
+    if (ip.ipAddress.length != 0){
+
+      this.massAddress = ip.ipAddress;
+      this.address = this.massAddress[0];
+      this.nameIp = this.address.nameConnect;
+      this.address.ipAddress = this.massAddress[0].ipAddress;
+
+    }
+ 
+    let api = await this.apiService.getApi();
+
+    if (api.apiModels.length != 0){
+
+      this.massApi = api.apiModels;
+      this.api = this.massApi[0];
+      this.nameApi = this.api.name;
+      this.api.path = this.massApi[0].path;
+    }
+
     setInterval(() => this.getTime(), 1000);
     setInterval(() => this.getPing(), 1000);
   }
@@ -152,24 +173,7 @@ export class HomeComponent implements OnInit {
 
     let ip = await this.pingService.getIp();
 
-    if (ip.ipAddress.length != 0){
+    let api = await this.apiService.getApi(); 
 
-    this.massAddress = ip.ipAddress;
-    this.address = this.massAddress[0];
-    this.nameIp = this.address.nameConnect;
-    this.address.ipAddress = this.massAddress[0].ipAddress;
-
-    }
- 
-    let api = await this.apiService.getApi();
-
-    if (api.apiModels.length != 0){
-
-    this.massApi = api.apiModels;
-    this.api = this.massApi[0];
-    this.nameApi = this.api.name;
-    this.api.path = this.massApi[0].path;
-    
-    }
   }
 }
