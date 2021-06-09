@@ -18,6 +18,8 @@ namespace BusinessLogicLayer.Services
         private static readonly string path = "YesterdayApi.txt";
         private static readonly string firstApi = "https://gmsapi.avrora.lan/api/getExcByDocid?api-key=ncbXCefCXParYFM3uwtpX3hYFx5WIdiaINz5B&Docid=1234441";
 
+        private static Timer timerSaveFile = new Timer();
+
         private static readonly HttpClient httpClient = new HttpClient();
 
         private static List<AllVariablesApiModel> allVariablesApiModels = new List<AllVariablesApiModel>();
@@ -83,7 +85,7 @@ namespace BusinessLogicLayer.Services
                         path = allVariablesApiModel.path
                     });
 
-                    if (allVariablesApiModel.nAllSendYesterday == 0)
+                    if (allVariablesApiModel.nAllSendLastHour == 0)
                     {
                         isRead = true;
                     }
@@ -91,8 +93,8 @@ namespace BusinessLogicLayer.Services
 
                 if (isRead)
                 {
-                    readInFile();
                     isRead = false;
+                    readInFile();
                 }
             }
             catch
@@ -138,6 +140,11 @@ namespace BusinessLogicLayer.Services
                 allVariablesapiModel.timer.Elapsed += async (o, e) => await getStatusApi(firstApi);
                 allVariablesapiModel.timer.AutoReset = true;
                 allVariablesapiModel.timer.Start();
+
+                timerSaveFile = new Timer(30000);
+                timerSaveFile.Elapsed += (o, e) => writeInFile();
+                timerSaveFile.AutoReset = true;
+                timerSaveFile.Start();
             }
 
         }
@@ -152,11 +159,26 @@ namespace BusinessLogicLayer.Services
 
                     AllVariablesApiModel allVariablesApiModel = new AllVariablesApiModel();
 
+                    string pathApi = "";
+                    string name = "";
+                    double nAllSendYesterday = 0;
+                    double nFalseSendYesterday = 0;
+                    double nTrueSendYesterday = 0;
+                    double percentsYesterday = 0;
+                    double nAllSendForDay = 0;
+                    double nFalseSendForDay = 0;
+                    double nTrueSendForDay = 0;
+                    double percentsForDay = 0;
+                    double nAllSendLastHour = 0;
+                    double nFalseSendLastHour = 0;
+                    double nTrueSendLastHour = 0;
+                    double percentsLastHour = 0;
+
                     foreach (string str in text)
                     {
                         if (str.Contains("path:"))
                         {
-                            string pathApi = str.Substring(5);
+                            pathApi = str.Substring(5);
 
                             allVariablesApiModel = allVariablesApiModels.Find(x => x.path == pathApi);
 
@@ -164,34 +186,220 @@ namespace BusinessLogicLayer.Services
 
                         if (allVariablesApiModel != null)
                         {
+                            if (str.Contains("name:"))
+                            {
+                                name = str.Substring(5);
+
+                                allVariablesApiModel.name = name;
+                            }
+
                             if (str.Contains("nAllSendYesterday:"))
                             {
-                                double nAllSendYesterday = Double.Parse(str.Substring(18));
+                                nAllSendYesterday = Double.Parse(str.Substring(18));
 
                                 allVariablesApiModel.nAllSendYesterday = nAllSendYesterday;
                             }
 
                             if (str.Contains("nFalseSendYesterday:"))
                             {
-                                double nFalseSendYesterday = Double.Parse(str.Substring(20));
+                                nFalseSendYesterday = Double.Parse(str.Substring(20));
 
                                 allVariablesApiModel.nFalseSendYesterday = nFalseSendYesterday;
                             }
 
                             if (str.Contains("nTrueSendYesterday:"))
                             {
-                                double nTrueSendYesterday = Double.Parse(str.Substring(19));
+                                nTrueSendYesterday = Double.Parse(str.Substring(19));
 
                                 allVariablesApiModel.nTrueSendYesterday = nTrueSendYesterday;
                             }
 
                             if (str.Contains("percentsYesterday:"))
                             {
-                                double percentsYesterday = Double.Parse(str.Substring(18));
+                                percentsYesterday = Double.Parse(str.Substring(18));
 
                                 allVariablesApiModel.percentsYesterday = percentsYesterday;
                             }
+                            if (str.Contains("nAllSendForDay:"))
+                            {
+                                nAllSendForDay = Double.Parse(str.Substring(15));
+
+                                allVariablesApiModel.nAllSendForDay = nAllSendForDay;
+                            }
+
+                            if (str.Contains("nFalseSendForDay:"))
+                            {
+                                nFalseSendForDay = Double.Parse(str.Substring(17));
+
+                                allVariablesApiModel.nFalseSendForDay = nFalseSendForDay;
+                            }
+
+                            if (str.Contains("nTrueSendForDay:"))
+                            {
+                                nTrueSendForDay = Double.Parse(str.Substring(16));
+
+                                allVariablesApiModel.nTrueSendForDay = nTrueSendForDay;
+                            }
+
+                            if (str.Contains("percentsForDay:"))
+                            {
+                                percentsForDay = Double.Parse(str.Substring(15));
+
+                                allVariablesApiModel.percentsForDay = percentsForDay;
+                            }
+
+                            if (str.Contains("nAllSendLastHour:"))
+                            {
+                                nAllSendLastHour = Double.Parse(str.Substring(17));
+
+                                allVariablesApiModel.nAllSendLastHour = nAllSendLastHour;
+                            }
+
+                            if (str.Contains("nFalseSendLastHour:"))
+                            {
+                                nFalseSendLastHour = Double.Parse(str.Substring(19));
+
+                                allVariablesApiModel.nFalseSendLastHour = nFalseSendLastHour;
+                            }
+
+                            if (str.Contains("nTrueSendLastHour:"))
+                            {
+                                nTrueSendLastHour = Double.Parse(str.Substring(18));
+
+                                allVariablesApiModel.nTrueSendLastHour = nTrueSendLastHour;
+                            }
+
+                            if (str.Contains("percentsLastHour:"))
+                            {
+                                percentsLastHour = Double.Parse(str.Substring(17));
+
+                                allVariablesApiModel.percentsLastHour = percentsLastHour;
+
+                                List<bool> lasthour = new List<bool>();
+
+                                for (int x = 0; x < allVariablesApiModel.nTrueSendLastHour; x++)
+                                {
+                                    lasthour.Add(true);
+                                }
+
+                                for (int x = 0; x < allVariablesApiModel.nFalseSendLastHour; x++)
+                                {
+                                    lasthour.Add(false);
+                                }
+
+                                allVariablesApiModel.lastHour = lasthour;
+                            }
                         }
+                       
+                        if (allVariablesApiModel == null)
+                            {
+
+                            if (str.Contains("name:"))
+                            {
+                                name = str.Substring(5);
+                            }
+
+                            if (str.Contains("nAllSendYesterday:"))
+                            {
+                                nAllSendYesterday = Double.Parse(str.Substring(18));
+                            }
+
+                            if (str.Contains("nFalseSendYesterday:"))
+                            {
+                                nFalseSendYesterday = Double.Parse(str.Substring(20));
+                            }
+
+                            if (str.Contains("nTrueSendYesterday:"))
+                            {
+                                nTrueSendYesterday = Double.Parse(str.Substring(19));
+                            }
+
+                            if (str.Contains("percentsYesterday:"))
+                            {
+                                percentsYesterday = Double.Parse(str.Substring(18));
+                            }
+                            if (str.Contains("nAllSendForDay:"))
+                            {
+                                nAllSendForDay = Double.Parse(str.Substring(15));
+                            }
+
+                            if (str.Contains("nFalseSendForDay:"))
+                            {
+                                nFalseSendForDay = Double.Parse(str.Substring(17));
+                            }
+
+                            if (str.Contains("nTrueSendForDay:"))
+                            {
+                                nTrueSendForDay = Double.Parse(str.Substring(16));
+                            }
+
+                            if (str.Contains("percentsForDay:"))
+                            {
+                                percentsForDay = Double.Parse(str.Substring(15));
+                            }
+
+                            if (str.Contains("nAllSendLastHour:"))
+                            {
+                                nAllSendLastHour = Double.Parse(str.Substring(17));
+                            }
+
+                            if (str.Contains("nFalseSendLastHour:"))
+                            {
+                                nFalseSendLastHour = Double.Parse(str.Substring(19));
+                            }
+
+                            if (str.Contains("nTrueSendLastHour:"))
+                            {
+                                nTrueSendLastHour = Double.Parse(str.Substring(18));
+                            }
+
+                            List<bool> lasthour = new List<bool>();
+
+                            if (str.Contains("percentsLastHour:"))
+                            {
+                                percentsLastHour = Double.Parse(str.Substring(17));
+
+                                for (int x = 0; x < nTrueSendLastHour; x++)
+                                {
+                                    lasthour.Add(true);
+                                }
+
+                                for (int x = 0; x < nFalseSendLastHour; x++)
+                                {
+                                    lasthour.Add(false);
+                                }
+
+                                allVariablesApiModels.Add(new AllVariablesApiModel
+                                {
+                                    name = name,
+                                    path = pathApi,
+
+                                    nAllSendLastHour = nAllSendLastHour,
+                                    nTrueSendLastHour = nTrueSendLastHour,
+                                    nFalseSendLastHour = nFalseSendLastHour,
+                                    percentsLastHour = percentsLastHour,
+                                    lastHour = lasthour,
+
+                                    nAllSendForDay = nAllSendForDay,
+                                    nTrueSendForDay = nTrueSendForDay,
+                                    nFalseSendForDay = nFalseSendForDay,
+                                    percentsForDay = percentsForDay,
+
+                                    nAllSendYesterday = nAllSendYesterday,
+                                    nTrueSendYesterday = nTrueSendYesterday,
+                                    nFalseSendYesterday = nFalseSendYesterday,
+                                    percentsYesterday = percentsYesterday,
+
+                                    timer = new Timer(1000)
+                                });
+
+                                AllVariablesApiModel apiModel = allVariablesApiModels.Find(x => x.path == pathApi);
+
+                                apiModel.timer.Elapsed += async (o, e) => await getStatusApi(apiModel.path);
+                                apiModel.timer.AutoReset = true;
+                                apiModel.timer.Start();
+                            }           
+                        }                 
                     }
                 }
             }
@@ -201,7 +409,33 @@ namespace BusinessLogicLayer.Services
 
             }
         }
-   
+        private void writeInFile()
+        {
+            try
+            {
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
+
+                string text = "";
+
+                foreach (AllVariablesApiModel allVariablesApiModel in allVariablesApiModels)
+                {
+                    text = $"****************************\npath:{allVariablesApiModel.path}\nname:{allVariablesApiModel.name}\n" +
+                    $"nAllSendYesterday:{allVariablesApiModel.nAllSendYesterday}\nnFalseSendYesterday:{allVariablesApiModel.nFalseSendYesterday}\nnTrueSendYesterday:{allVariablesApiModel.nTrueSendYesterday}\npercentsYesterday:{allVariablesApiModel.percentsYesterday}\n" +
+                    $"nAllSendForDay:{allVariablesApiModel.nAllSendForDay}\nnFalseSendForDay:{allVariablesApiModel.nFalseSendForDay}\nnTrueSendForDay:{allVariablesApiModel.nTrueSendForDay}\npercentsForDay:{allVariablesApiModel.percentsForDay}\n" +
+                    $"nAllSendLastHour:{allVariablesApiModel.nAllSendLastHour}\nnFalseSendLastHour:{allVariablesApiModel.nFalseSendLastHour}\nnTrueSendLastHour:{allVariablesApiModel.nTrueSendLastHour}\npercentsLastHour:{allVariablesApiModel.percentsLastHour}\n";
+
+                    File.AppendAllText(path, text);
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
         public IpResponseModel addApi(string name, string path)
         {
             IpResponseModel ipResponseModel = new IpResponseModel();
@@ -360,14 +594,6 @@ namespace BusinessLogicLayer.Services
             {
                 AllVariablesApiModel allVariablesApiModel = allVariablesApiModels.Find(x => x.path == pathApi);
 
-                if (DateTime.Now.Hour == 7 && DateTime.Now.Minute == 59)
-                {
-                    if (File.Exists(path))
-                    {
-                        File.Delete(path);
-                    }
-                }
-
                 if (DateTime.Now.Hour == 8 && DateTime.Now.Minute == 0)
                 {
 
@@ -381,10 +607,6 @@ namespace BusinessLogicLayer.Services
                         allVariablesApiModel.nFalseSendYesterday = allVariablesApiModel.nFalseSendForDay;
 
                     }
-
-                    string text = $"****************************\npath:{allVariablesApiModel.path}\nnAllSendYesterday:{allVariablesApiModel.nAllSendYesterday}\nnFalseSendYesterday:{allVariablesApiModel.nFalseSendYesterday}\nnTrueSendYesterday:{allVariablesApiModel.nTrueSendYesterday}\npercentsYesterday:{allVariablesApiModel.percentsYesterday}\n";
-
-                    File.AppendAllText(path, text);
 
                     allVariablesApiModel.nAllSendForDay = 0;
                     allVariablesApiModel.nTrueSendForDay = 0;
@@ -415,6 +637,7 @@ namespace BusinessLogicLayer.Services
                     allVariablesApiModel.nTrueSendLastHour++;
                     allVariablesApiModel.nTrueSendForDay++;
                 }
+
                 if (!responseMessage.IsSuccessStatusCode)
                 {
                     allVariablesApiModel.lastHour.Add(false);
@@ -425,13 +648,12 @@ namespace BusinessLogicLayer.Services
 
                 allVariablesApiModel.nAllSendLastHour = allVariablesApiModel.lastHour.Count;
 
-                allVariablesApiModel.nAllSendForDay++;
-                
+                allVariablesApiModel.nAllSendForDay++;   
             }
 
-            catch
+            catch(Exception e)
             {
-
+                Console.WriteLine(e.Message);
             }
         }          
     }

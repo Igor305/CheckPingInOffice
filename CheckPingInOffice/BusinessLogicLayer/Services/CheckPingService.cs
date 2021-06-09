@@ -80,7 +80,11 @@ namespace BusinessLogicLayer.Services
 
                 foreach (AllVariablesModel ipAddress in allVariablesModels)
                 {
-                    ipAddressResponseModels.ipAddress.Add(new IpAddressModel { nameConnect = ipAddress.nameConnect, ipAddress = ipAddress.ipAddress });
+                    ipAddressResponseModels.ipAddress.Add(new IpAddressModel 
+                    { 
+                        nameConnect = ipAddress.nameConnect, 
+                        ipAddress = ipAddress.ipAddress 
+                    });
                     
                     if(ipAddress.nAllSendLastHour == 0)
                     {
@@ -404,9 +408,7 @@ namespace BusinessLogicLayer.Services
 
             }
         }
-
         
-
         private void writeInFile()
         {
             try
