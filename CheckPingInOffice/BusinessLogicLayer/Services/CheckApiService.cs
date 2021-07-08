@@ -594,7 +594,7 @@ namespace BusinessLogicLayer.Services
             {
                 AllVariablesApiModel allVariablesApiModel = allVariablesApiModels.Find(x => x.path == pathApi);
 
-                if (DateTime.Now.Hour == 8 && DateTime.Now.Minute == 0)
+                if (DateTime.Now.Hour == 8 && DateTime.Now.Minute == 0 && DateTime.Now.Second == 0)
                 {
 
                     if (allVariablesApiModel.nAllSendForDay != 0)
