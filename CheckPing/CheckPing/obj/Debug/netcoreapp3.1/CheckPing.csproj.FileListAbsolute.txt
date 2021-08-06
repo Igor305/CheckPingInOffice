@@ -30,10 +30,10 @@ C:\Users\i.talavyria\Desktop\project\MiniServices\CheckPing\CheckPing\bin\Debug\
 C:\Users\i.talavyria\Desktop\project\MiniServices\CheckPing\CheckPing\bin\Debug\netcoreapp3.1\CheckPing.runtimeconfig.dev.json
 C:\Users\i.talavyria\Desktop\project\MiniServices\CheckPing\CheckPing\bin\Debug\netcoreapp3.1\CheckPing.dll
 C:\Users\i.talavyria\Desktop\project\MiniServices\CheckPing\CheckPing\bin\Debug\netcoreapp3.1\CheckPing.pdb
-C:\Users\i.talavyria\Desktop\project\MiniServices\CheckPing\CheckPing\obj\Debug\netcoreapp3.1\CheckPing.csprojAssemblyReference.cache
 C:\Users\i.talavyria\Desktop\project\MiniServices\CheckPing\CheckPing\obj\Debug\netcoreapp3.1\CheckPing.AssemblyInfoInputs.cache
 C:\Users\i.talavyria\Desktop\project\MiniServices\CheckPing\CheckPing\obj\Debug\netcoreapp3.1\CheckPing.AssemblyInfo.cs
 C:\Users\i.talavyria\Desktop\project\MiniServices\CheckPing\CheckPing\obj\Debug\netcoreapp3.1\CheckPing.csproj.CoreCompileInputs.cache
 C:\Users\i.talavyria\Desktop\project\MiniServices\CheckPing\CheckPing\obj\Debug\netcoreapp3.1\CheckPing.dll
 C:\Users\i.talavyria\Desktop\project\MiniServices\CheckPing\CheckPing\obj\Debug\netcoreapp3.1\CheckPing.pdb
 C:\Users\i.talavyria\Desktop\project\MiniServices\CheckPing\CheckPing\obj\Debug\netcoreapp3.1\CheckPing.genruntimeconfig.cache
+C:\Users\i.talavyria\Desktop\project\MiniServices\CheckPing\CheckPing\obj\Debug\netcoreapp3.1\CheckPing.csproj.AssemblyReference.cache

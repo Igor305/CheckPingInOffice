@@ -1,0 +1,16 @@
+C:\Users\i.talavyria\source\repos\PingForPC\PingForPC\bin\Debug\net5.0\PingForPC.exe
+C:\Users\i.talavyria\source\repos\PingForPC\PingForPC\bin\Debug\net5.0\PingForPC.deps.json
+C:\Users\i.talavyria\source\repos\PingForPC\PingForPC\bin\Debug\net5.0\PingForPC.runtimeconfig.json
+C:\Users\i.talavyria\source\repos\PingForPC\PingForPC\bin\Debug\net5.0\PingForPC.runtimeconfig.dev.json
+C:\Users\i.talavyria\source\repos\PingForPC\PingForPC\bin\Debug\net5.0\PingForPC.dll
+C:\Users\i.talavyria\source\repos\PingForPC\PingForPC\bin\Debug\net5.0\ref\PingForPC.dll
+C:\Users\i.talavyria\source\repos\PingForPC\PingForPC\bin\Debug\net5.0\PingForPC.pdb
+C:\Users\i.talavyria\source\repos\PingForPC\PingForPC\obj\Debug\net5.0\PingForPC.csproj.AssemblyReference.cache
+C:\Users\i.talavyria\source\repos\PingForPC\PingForPC\obj\Debug\net5.0\PingForPC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\i.talavyria\source\repos\PingForPC\PingForPC\obj\Debug\net5.0\PingForPC.AssemblyInfoInputs.cache
+C:\Users\i.talavyria\source\repos\PingForPC\PingForPC\obj\Debug\net5.0\PingForPC.AssemblyInfo.cs
+C:\Users\i.talavyria\source\repos\PingForPC\PingForPC\obj\Debug\net5.0\PingForPC.csproj.CoreCompileInputs.cache
+C:\Users\i.talavyria\source\repos\PingForPC\PingForPC\obj\Debug\net5.0\PingForPC.dll
+C:\Users\i.talavyria\source\repos\PingForPC\PingForPC\obj\Debug\net5.0\ref\PingForPC.dll
+C:\Users\i.talavyria\source\repos\PingForPC\PingForPC\obj\Debug\net5.0\PingForPC.pdb
+C:\Users\i.talavyria\source\repos\PingForPC\PingForPC\obj\Debug\net5.0\PingForPC.genruntimeconfig.cache
