@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pMxvlH4r9bFWPcj0fVNjOB8vT04zo0Jmsqxlkhxu/JwXJFnmxizlVMuNDnOKw5LecPmxkh88mUD436XGgXeMtw==",
+  "dgSpecHash": "CByDRh/XlMMtvXJN/lmKySPnKYz8CfL34fQao92y7o38PUAB4ryKzc0+pk2TS7fSqixXZlDHqKFUlpVcKSJ/5w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\i.talavyria\\Desktop\\project\\PingForPC\\WorkerService\\WorkerService.csproj",
+  "projectFilePath": "C:\\Users\\i.talavyria\\Desktop\\project\\MiniServices\\PingForPC\\WorkerService\\WorkerService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\i.talavyria\\.nuget\\packages\\microsoft.extensions.configuration\\5.0.0\\microsoft.extensions.configuration.5.0.0.nupkg.sha512",
     "C:\\Users\\i.talavyria\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",

@@ -4454,11 +4454,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\i.talavyria\\Desktop\\project\\PingForPC\\WorkerService\\WorkerService.csproj",
+      "projectUniqueName": "C:\\Users\\i.talavyria\\Desktop\\project\\MiniServices\\PingForPC\\WorkerService\\WorkerService.csproj",
       "projectName": "WorkerService",
-      "projectPath": "C:\\Users\\i.talavyria\\Desktop\\project\\PingForPC\\WorkerService\\WorkerService.csproj",
+      "projectPath": "C:\\Users\\i.talavyria\\Desktop\\project\\MiniServices\\PingForPC\\WorkerService\\WorkerService.csproj",
       "packagesPath": "C:\\Users\\i.talavyria\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\i.talavyria\\Desktop\\project\\PingForPC\\WorkerService\\obj\\",
+      "outputPath": "C:\\Users\\i.talavyria\\Desktop\\project\\MiniServices\\PingForPC\\WorkerService\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\i.talavyria\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4475,8 +4475,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\i.talavyria\\Desktop\\project\\PingForPC\\PingForPC\\PingForPC.csproj": {
-              "projectPath": "C:\\Users\\i.talavyria\\Desktop\\project\\PingForPC\\PingForPC\\PingForPC.csproj"
+            "C:\\Users\\i.talavyria\\Desktop\\project\\MiniServices\\PingForPC\\PingForPC\\PingForPC.csproj": {
+              "projectPath": "C:\\Users\\i.talavyria\\Desktop\\project\\MiniServices\\PingForPC\\PingForPC\\PingForPC.csproj"
             }
           }
         }

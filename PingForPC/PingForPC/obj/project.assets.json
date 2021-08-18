@@ -3400,11 +3400,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\i.talavyria\\Desktop\\project\\PingForPC\\PingForPC\\PingForPC.csproj",
+      "projectUniqueName": "C:\\Users\\i.talavyria\\Desktop\\project\\MiniServices\\PingForPC\\PingForPC\\PingForPC.csproj",
       "projectName": "PingForPC",
-      "projectPath": "C:\\Users\\i.talavyria\\Desktop\\project\\PingForPC\\PingForPC\\PingForPC.csproj",
+      "projectPath": "C:\\Users\\i.talavyria\\Desktop\\project\\MiniServices\\PingForPC\\PingForPC\\PingForPC.csproj",
       "packagesPath": "C:\\Users\\i.talavyria\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\i.talavyria\\Desktop\\project\\PingForPC\\PingForPC\\obj\\",
+      "outputPath": "C:\\Users\\i.talavyria\\Desktop\\project\\MiniServices\\PingForPC\\PingForPC\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\i.talavyria\\AppData\\Roaming\\NuGet\\NuGet.Config",
