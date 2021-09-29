@@ -1,0 +1,3 @@
+# CheckPingInOffice
+
+git checkout dev
